@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :videos
+  has_many :plays
+
   def process(auth)
     if auth.extra.raw_info.nil?
       process_guest(auth)
