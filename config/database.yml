@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  database: videos_development
+  pool: 5
+
+test: 
+  adapter: postgresql
+  database: videos_development
+  pool: 5
