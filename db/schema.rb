@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517184057) do
+ActiveRecord::Schema.define(version: 20170517223501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string "stripe_customer_id"
+    t.bigint "user_id"
+    t.integer "account_balance"
+    t.integer "created"
+    t.string "currency"
+    t.string "default_source"
+    t.string "delinquent"
+    t.string "description"
+    t.string "email"
+    t.string "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_customers_on_user_id"
+  end
 
   create_table "plays", force: :cascade do |t|
     t.bigint "user_id"
@@ -56,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170517184057) do
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
+  add_foreign_key "customers", "users"
   add_foreign_key "plays", "users"
   add_foreign_key "plays", "videos"
   add_foreign_key "videos", "users"

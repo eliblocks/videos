@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   def new
+
   end
 
   def create
@@ -11,12 +12,16 @@ class ChargesController < ApplicationController
       :source  => params[:stripeToken]
     )
 
+    Customer.create_from_stripe(customer, current_user.id)
+
+
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
       :description => 'Rails Stripe customer',
       :currency    => 'usd'
     )
+
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
