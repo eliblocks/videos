@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :customers
+  has_one :customer
+  has_many :charges
+  has_many :sources, through: :customer
   has_many :videos
   has_many :plays
 

@@ -1,0 +1,20 @@
+<div class="columns">
+  <div class="column">
+    <%= link_to "Upload A Video", new_video_path %>
+  </div>
+</div>
+
+<div class="columns">
+  <% @videos.each do |video| %>
+    <div class="column">
+      <p><%= video.title %></p>
+      <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+      <%= content_tag(:div, "&nbsp;", 
+                      class: "wistia_embed wistia_async_#{video.wistia_id}", 
+                        style: "height:366px;width:600px") %>
+    </div>
+  <% end %>
+</div>
+
+
+

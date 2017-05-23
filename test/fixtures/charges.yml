@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stripe_charge_id: MyString
+  amount: 1
+  amount_refunded: 1
+  balance_transaction: MyString
+  captured: false
+  created: 1
+  currency: MyString
+  customer: MyString
+  description: MyString
+  success: false
+  references: 
+
+two:
+  stripe_charge_id: MyString
+  amount: 1
+  amount_refunded: 1
+  balance_transaction: MyString
+  captured: false
+  created: 1
+  currency: MyString
+  customer: MyString
+  description: MyString
+  success: false
+  references: 

@@ -4,13 +4,23 @@
       <span>VIDEOS</span>
     <% end %>
   </div>
-  <div class="nav-center">
-    <%= link_to new_charge_path, class: "nav-item" do %>
-      <span class="button is-primary">Buy Minutes</span>
-    <% end %>
+
   <div class="nav-right">
-    <%= link_to login_path, class: "nav-item" do %>
-      <span class="button is-primary">Connect With Facebook</span>
+    <% if logged_in? %>
+      <%= link_to logout_path, class: "nav-item" do %>
+        <span class="button">Logout</span>
+      <% end %>
+      <%= link_to new_charge_path, class: "nav-item" do %>
+        <span class="button is-primary">Buy Minutes</span>
+      <% end %>
+
+      <%= link_to user_path(current_user), class: "nav-item" do %>
+        <span><%= current_user.balance/60 %></span>
+      <% end %>
+    <% else %>
+      <%= link_to login_path, class: "nav-item" do %>
+        <span class="button is-primary">Connect With Facebook</span>
+      <% end %>
     <% end %>
   </div>
 </div>

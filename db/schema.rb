@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517223501) do
+ActiveRecord::Schema.define(version: 20170519222912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "charges", force: :cascade do |t|
+    t.string "stripe_charge_id"
+    t.integer "amount"
+    t.integer "amount_refunded"
+    t.string "balance_transaction"
+    t.boolean "captured"
+    t.integer "created"
+    t.string "currency"
+    t.string "description"
+    t.boolean "success"
+    t.bigint "source_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rate"
+    t.index ["source_id"], name: "index_charges_on_source_id"
+    t.index ["user_id"], name: "index_charges_on_user_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "stripe_customer_id"
@@ -40,6 +59,14 @@ ActiveRecord::Schema.define(version: 20170517223501) do
     t.index ["video_id"], name: "index_plays_on_video_id"
   end
 
+  create_table "sources", force: :cascade do |t|
+    t.string "stripe_source_id"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_sources_on_customer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "facebook_id"
     t.string "full_name"
@@ -56,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170517223501) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "balance"
+    t.integer "balance", default: 0
   end
 
   create_table "videos", force: :cascade do |t|
@@ -72,8 +99,11 @@ ActiveRecord::Schema.define(version: 20170517223501) do
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
+  add_foreign_key "charges", "sources"
+  add_foreign_key "charges", "users"
   add_foreign_key "customers", "users"
   add_foreign_key "plays", "users"
   add_foreign_key "plays", "videos"
+  add_foreign_key "sources", "customers"
   add_foreign_key "videos", "users"
 end

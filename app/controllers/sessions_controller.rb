@@ -8,12 +8,11 @@ class SessionsController < ApplicationController
     if User.find_by(email: @auth.info.email)
       @user = User.find_by(email: @auth.info.email)
       @user.process(@auth)
-      @user.save
     else
       @user = User.new
       @user.process(@auth)
-      @user.save
     end
+    @user.save
     reset_session
     session[:user_id] = @user.id
     redirect_to root_url
