@@ -1,29 +1,58 @@
-require 'wistia'
-Wistia.password = ENV['WISTIA_SECRET_KEY']
-
 class VideosController < ApplicationController
-
+  before_action :authenticate_user, except: [:index, :show]
   def index
     @videos = Video.all
 
   end
 
-  def new
-    @video = Video.new
-    @password = ENV['WISTIA_SECRET_KEY']
+  # def new
+  #   @videos = []
+  #   if current_user.vimeo_token && current_user.vimeo_id && session[:vimeo_id] && session[:vimeo_token]
+  #     address = "https://api.vimeo.com/users/#{session[:vimeo_id]}/videos"
+  #     response = HTTParty.get(address, headers: { "Authorization" => "Bearer #{session[:vimeo_token]}" })
+  #     @data = JSON.parse(response.body)["data"]
+  #     @data.each do |data|
+  #       @video = Video.new(title: data["name"],
+  #         user_id: current_user.id,
+  #         length_in_seconds: data["duration"],
+  #         vimeo_id: link_id(data),
+  #         description: data['description'],
+  #         thumbnail_url: data['pictures']['sizes'][2]['link'])
+  #       @videos << @video
+  #     end
+  #   end
+  # end
+
+  def show
+
   end
 
   def create
-    @video = Video.new(video_params)
-    @video.user = current_user
-    if @video.save
-      flash[:success] = "Video successfully submitted"
-      redirect_to root_url
-    else
-      flash[:danger] = @video.errors.full_messages
-      render 'new'
+    params[:selections].each do |id, value|
+      address = "https://api.vimeo.com/videos/#{id}"
+      data = HTTParty.get(address, headers: { "Authorization" => "Bearer #{session[:vimeo_token]}" })
+      data = JSON.parse(data.body)
+      @video = Video.new(title: data["name"],
+                          user_id: current_user.id,
+                          length_in_seconds: data["duration"],
+                          vimeo_id: id,
+                          description: data['description'],
+                          thumbnail_url: data['pictures']['sizes'][2]['link'])
+      unless @video.save!
+        debugger
+      end
     end
+    params[:video_id].each_with_index |vid, index|
+
+    end
+    redirect_to root_url
   end
+
+  def vimeo
+    @token = current_user.vimeo_token
+  end
+
+
 
   private
 

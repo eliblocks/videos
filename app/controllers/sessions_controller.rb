@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :authenticate_user, except: [:new, :create]
   def new
     redirect_to '/auth/facebook'
   end
@@ -20,6 +21,15 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
+    redirect_to root_url
+  end
+
+  def vimeo
+    @token = request.env['omniauth.auth'][:credentials][:token]
+    @vimeo_id = request.env['omniauth.auth'][:uid]
+    session[:vimeo_token] = @token
+    session[:vimeo_id] = @vimeo_id
+    current_user.update!(vimeo_token: @token, vimeo_id: @vimeo_id)
     redirect_to root_url
   end
 end
