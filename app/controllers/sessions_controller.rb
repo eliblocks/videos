@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
     session[:vimeo_token] = @token
     session[:vimeo_id] = @vimeo_id
     current_user.update!(vimeo_token: @token, vimeo_id: @vimeo_id)
-    redirect_to root_url
+    Video.update_vimeo_videos(current_user, @token, @vimeo_id)
+    redirect_to manage_videos_path
   end
 end

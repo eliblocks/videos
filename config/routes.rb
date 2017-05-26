@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
 
   get 'auth/vimeo/callback', to: 'sessions#vimeo'
-  post '/videos/vimeo_selection', to: 'videos#vimeo_selection'
+  get 'users/manage_videos', to: 'users#manage_videos', as: 'manage_videos'
+  post 'videos/update_status'
 
   resources :users
   resources :charges

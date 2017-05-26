@@ -1,13 +1,13 @@
 <div class="columns">
   <div class="column">
-    <%= link_to "Upload A Video", new_video_path %>
+    <%= link_to "Upload A Video", '/users/manage_videos' %>
   </div>
 </div>
 
 <div class="columns">
   <% @videos.each do |video| %>
     <div class="column">
-      <%= link_to "https://vimeo.com/#{video.vimeo_id}" do %>
+      <%= link_to video_path(video) do %>
         <%= image_tag video.thumbnail_url %>
       <% end %>
     </div>

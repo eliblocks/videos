@@ -1,0 +1,7 @@
+<%= form_tag '/videos/update_status' do %>
+  <% @videos.each do |video| %>
+    <%= label_tag "videos[#{video.id}]", video.title %>
+    <%= check_box_tag "videos[#{video.id}]" %>
+  <% end %>
+  <%= submit_tag "Submit" %>
+<% end %>

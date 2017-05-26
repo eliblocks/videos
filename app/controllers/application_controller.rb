@@ -13,13 +13,15 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    redirect_to login_path unless logged_in?
+    unless logged_in?
+      flash[:danger] = "Must be logged in to perform that action"
+      redirect_to root_url
+    end
   end
 
   def get_vimeo_video(user)
 
   end
-
 
   def link_id(element)
     element["uri"].gsub("/videos/", "")
