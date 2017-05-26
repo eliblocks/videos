@@ -1,0 +1,18 @@
+development:
+  cloud_name: eli
+  api_key: '337453866761239'
+  api_secret: Q3cBgUF_ab6EniV5o28egrWWQl8
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: eli
+  api_key: '337453866761239'
+  api_secret: Q3cBgUF_ab6EniV5o28egrWWQl8
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: eli
+  api_key: '337453866761239'
+  api_secret: Q3cBgUF_ab6EniV5o28egrWWQl8
+  enhance_image_tag: true
+  static_image_support: false

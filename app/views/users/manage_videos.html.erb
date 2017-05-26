@@ -1,0 +1,9 @@
+<div class="coulmns">
+  <div class="column">
+    <% if session[:vimeo_id] && session[:vimeo_token] && current_user.videos.length > 0 %>
+      <%= render 'form' %>
+    <% else %>
+      <%= link_to 'Connect Vimeo', '/auth/vimeo' %>
+    <% end %>
+  </div>
+</div>

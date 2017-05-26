@@ -1,5 +1,6 @@
-<script src="//fast.wistia.com/assets/external/api.js" async></script>
-<link rel="stylesheet" href="//fast.wistia.com/assets/external/uploader.css" />
+<%= cloudinary_js_config %>
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script> cloudinary.setCloudName('eli'); </script>
 
 <div class="columns">
   <div class="column is-half desktop">
@@ -15,10 +16,9 @@
         </div>
       </div>
       <div class="field">
-        <div id="wistia_uploader" style="height:360px;width:100%;"></div>
+        <button id="opener"></button>
       </div>
       <%= f.hidden_field :length_in_seconds %>
-      <%= f.hidden_field :wistia_id %>
       <div class="field">
         <div class="control">
           <%= f.submit "Submit", class: "button is-primary", id: "video-submit" %>
@@ -29,25 +29,12 @@
 </div>
 
 <script>
-window._wapiq = window._wapiq || [];
-_wapiq.push(function(W) {
-  window.wistiaUploader = new W.Uploader({
-    accessToken: '7583b7e3465fbaaa70163ab255a0f9581b9817755d4dac04d4b75556c5e61da9',
-    dropIn: "wistia_uploader",
-    projectId: "9hyra9x33g"
-  });
-  wistiaUploader.bind("uploadembeddable", function(file, media, embedCode, oembedResponse) {
-    console.log("Here's the media in Wistia: ", media);
-    addMediaInfo(media); // save the embed code to your database to display the video in the future
-  });
+  cloudinary.applyUploadWidget(document.getElementById('opener'), 
+  { upload_preset: 'bgebypf6',
+    button_caption: 'Upload video'},
+    function(error, result) {console.log(error, result)});
+</script>
 
-});
-</script>
-<script>
-  function addMediaInfo(media) {
-    document.getElementById("video_wistia_id").value = media.id;
-    document.getElementById("video_length_in_seconds").value = Math.round(media.attributes.duration);
-  }
-</script>
+
 
 

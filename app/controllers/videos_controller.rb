@@ -1,5 +1,4 @@
-require 'wistia'
-Wistia.password = ENV['WISTIA_SECRET_KEY']
+
 
 class VideosController < ApplicationController
 
@@ -10,7 +9,6 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new
-    @password = ENV['WISTIA_SECRET_KEY']
   end
 
   def create
@@ -28,6 +26,6 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :length_in_seconds, :wistia_id)
+    params.require(:video).permit(:title, :description, :length_in_seconds)
   end
 end
