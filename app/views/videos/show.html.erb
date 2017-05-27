@@ -1,0 +1,39 @@
+<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+
+<div class="column">
+      <p><%= @video.title %></p>
+      <%= content_tag(:div, "&nbsp;", 
+                      class: "wistia_embed wistia_async_#{@video.wistia_id} autoPlay=true",
+                      id: "wistia_vid",
+                      style: "height:360px;width:640px",
+                      data: { video_id: @video.wistia_id }) %>
+    </div>
+
+<script>
+counter = 0;
+var video_id = document.getElementById("wistia_vid").dataset.videoId;
+console.log(video_id)
+window._wq = window._wq || [];
+_wq.push({ id: video_id, onReady: function(video) {
+  console.log("I got a handle to the video!", video);
+  video.bind("secondchange", function(s) {
+    incrementCounter();
+  });
+}});
+
+function incrementCounter() {
+  counter++;
+  console.log(counter);
+  if (counter == 5) {
+    sendPlayUpdate(counter);
+    counter = 0;
+  }
+}
+
+function sendPlayUpdate(count) {
+  var playUpdate = new XMLHttpRequest();
+  playUpdate.open('POST', 'http://localhost:3000/plays', true);
+  playUpdate.send();
+}
+
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519222912) do
+ActiveRecord::Schema.define(version: 20170527034905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170519222912) do
     t.bigint "video_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "length_in_seconds"
     t.index ["user_id"], name: "index_plays_on_user_id"
     t.index ["video_id"], name: "index_plays_on_video_id"
   end
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170519222912) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "wistia_delivery_id"
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
 

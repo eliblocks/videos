@@ -37,7 +37,7 @@ class ChargesController < ApplicationController
     Source.create_from_stripe(charge, current_user)
     Charge.create_from_stripe(charge, current_user)
 
-    @seconds_purchased = @amount * Rails.configuration.rate
+    @seconds_purchased = (@amount/100) * Rails.configuration.rate
     current_user.update!(balance: current_user.balance + @seconds_purchased)
 
     redirect_to root_url

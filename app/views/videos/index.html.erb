@@ -4,14 +4,13 @@
   </div>
 </div>
 
-<div class="columns">
+<div class="columns is-multiline">
   <% @videos.each do |video| %>
-    <div class="column">
+    <div class="column is-3">
       <p><%= video.title %></p>
-      <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script>
-      <%= content_tag(:div, "&nbsp;", 
-                      class: "wistia_embed wistia_async_#{video.wistia_id}", 
-                        style: "height:366px;width:600px") %>
+      <%= link_to video_path(video) do %>
+        <%= image_tag video.thumbnail_url %>
+      <% end %>
     </div>
   <% end %>
 </div>

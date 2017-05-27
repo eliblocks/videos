@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :users
   resources :charges
   resources :videos
+  resources :plays
 end

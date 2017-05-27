@@ -5,7 +5,13 @@ class VideosController < ApplicationController
 
   def index
     @videos = Video.all
+  end
 
+  def show
+    @video = Video.find(params[:id])
+    Play.create!(user: current_user, video: @video )
+    current_user.update!(balance: current_user.balance - @video.length_in_seconds)
+    @video.user.update!(balance: @video.user.balance + (@video.length_in_seconds * (1 - Rails.configuration.commission)))
   end
 
   def new
@@ -28,6 +34,10 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :length_in_seconds, :wistia_id)
+    params.require(:video).permit(:title,
+                                  :description,
+                                  :length_in_seconds,
+                                  :wistia_id,
+                                  :wistia_delivery_id)
   end
 end
