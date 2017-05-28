@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def play_time
+  def youtube_time(seconds)
   end
 
 end
