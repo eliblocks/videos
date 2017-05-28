@@ -1,13 +1,24 @@
 <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script>
 
-<div class="column">
-      <p><%= @video.title %></p>
-      <%= content_tag(:div, "&nbsp;", 
-                      class: "wistia_embed wistia_async_#{@video.wistia_id} autoPlay=true",
-                      id: "wistia_vid",
-                      style: "height:360px;width:640px",
-                      data: { video_id: @video.wistia_id }) %>
-    </div>
+<div class="columns">
+  <div class="column">
+    <p><%= @video.title %></p>
+    <%= content_tag(:div, "&nbsp;", 
+                    class: "wistia_embed wistia_async_#{@video.wistia_id} autoPlay=true",
+                    id: "wistia_vid",
+                    style: "height:360px;width:640px",
+                    data: { video_id: @video.wistia_id }) %>
+  </div>
+</div>
+<div class="columns">
+  <div class="column">
+    <%= form_with model: Play.new, id: "play" do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :video_id, value: @video.id %>
+      <%= f.hidden_field :length_in_seconds, value: 0, id: "length_in_seconds" %>
+    <% end %>
+  </div>
+</div>
 
 <script>
 counter = 0;
@@ -24,16 +35,19 @@ _wq.push({ id: video_id, onReady: function(video) {
 function incrementCounter() {
   counter++;
   console.log(counter);
-  if (counter == 5) {
+  if (counter == 10) {
     sendPlayUpdate(counter);
     counter = 0;
   }
 }
 
 function sendPlayUpdate(count) {
-  var playUpdate = new XMLHttpRequest();
-  playUpdate.open('POST', 'http://localhost:3000/plays', true);
-  playUpdate.send();
+  var form = document.getElementById("play");
+  var countInput = document.getElementById("length_in_seconds");
+  countInput.value = parseInt(count);
+  if (form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })) !== false) {
+  form.submit()
+  }
 }
 
 </script>

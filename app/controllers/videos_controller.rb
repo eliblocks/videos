@@ -9,9 +9,9 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    Play.create!(user: current_user, video: @video )
-    current_user.update!(balance: current_user.balance - @video.length_in_seconds)
-    @video.user.update!(balance: @video.user.balance + (@video.length_in_seconds * (1 - Rails.configuration.commission)))
+    @play = Play.new
+
+
   end
 
   def new

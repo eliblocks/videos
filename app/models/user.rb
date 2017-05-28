@@ -24,4 +24,12 @@ class User < ApplicationRecord
       self.age_range = auth.extra.raw_info.age_range.min.join
     end
   end
+
+  def subtract_balance!(seconds)
+    update!(balance: balance - seconds)
+  end
+
+  def add_balance!(seconds)
+    update!(balance: balance + (seconds * (1 - Rrails.configuration.commission)))
+  end
 end
