@@ -4,14 +4,25 @@
   </div>
 </div>
 
-<div class="columns is-multiline">
+<div class="columns is-multiline is-mobile">
   <% @videos.each do |video| %>
-    <div class="column is-3">
-      <p><%= video.title %></p>
-      <%= link_to video_path(video) do %>
-        <%= image_tag video.thumbnail_url %>
-      <% end %>
+    <div class="column is-3-desktop is-4-tablet is-6-mobile">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-300x169">
+            <%= link_to video_path(video) do %>
+              <%= image_tag video.thumbnail_url %>
+            <% end %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <p class="title is-4"><%= video.title %></p>
+          <p class="subtitle"><%= video.user.full_name %></p>
+          <p><%= play_time(video.length_in_seconds) %></p>
+        </div>
+      </div>
     </div>
+    
   <% end %>
 </div>
 
