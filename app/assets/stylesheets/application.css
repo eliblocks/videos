@@ -36,3 +36,11 @@
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+.button.is-static {
+  background-color: whitesmoke;
+  border-color: #dbdbdb;
+  color: #7a7a7a;
+  box-shadow: none;
+  pointer-events: none;
+}

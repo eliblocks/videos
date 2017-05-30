@@ -1,0 +1,40 @@
+<div class="columns">
+  <div class="column is-4-desktop">
+    <h1>Cash Out - <%= number_to_currency(current_user.minutes/200, precision: 0) %> Max</h1>
+    <div>
+      <p>
+        <span id="remaining-minutes"><%= current_user.minutes %></span>
+        /
+        <span id="original-minutes"><%= current_user.minutes %></span> 
+        minutes remaining
+      </p>
+    </div>
+    <%= form_with url: payments_path, local: true do |f| %>
+      <div class="field has-addons" %>
+        <p class="control">
+          <%= number_field_tag "dollars", "", class: "input", oninput: "show_minutes();" %>
+        </p>
+        <p class="control">
+          <span class="button is-static">$</span>
+        </p>
+      </div>
+
+ 
+      <div class="field is-grouped">
+        <p class="control">
+          <%= f.submit "Submit", class: "button is-primary" %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<script>
+
+function show_minutes() {
+  var dollars = document.getElementById("dollars").value;
+  var originalMinutes = parseInt(document.getElementById("original-minutes").innerHTML);
+  var remainingMinutes = originalMinutes - dollars * 200;
+  document.getElementById("remaining-minutes").innerHTML = remainingMinutes;
+}
+
+</script>
+

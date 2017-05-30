@@ -13,7 +13,11 @@
       <%= link_to new_charge_path, class: "nav-item" do %>
         <span class="button is-primary">Buy Minutes</span>
       <% end %>
-
+      <% if current_user.minutes > 4000 %>
+        <%= link_to new_payment_path, class: "nav-item" do %>
+          <span class="button is-primary">Cash Out</span>
+        <% end %>
+      <% end %>
       <%= link_to user_path(current_user), class: "nav-item" do %>
         <span><%= current_user.balance/60 %></span>
       <% end %>

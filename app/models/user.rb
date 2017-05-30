@@ -30,6 +30,14 @@ class User < ApplicationRecord
   end
 
   def add_balance!(seconds)
-    update!(balance: balance + (seconds * (1 - Rrails.configuration.commission)))
+    update!(balance: balance + (seconds * (1 - Rails.configuration.commission)))
+  end
+
+  def minutes
+    balance/60
+  end
+
+  def dollars
+    balance / Rails.configuration.rate
   end
 end

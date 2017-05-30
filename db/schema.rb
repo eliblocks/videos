@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527210244) do
+ActiveRecord::Schema.define(version: 20170529150907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20170527210244) do
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "rate"
+    t.integer "amount"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "plays", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "video_id"
@@ -82,9 +91,10 @@ ActiveRecord::Schema.define(version: 20170527210244) do
     t.string "updated_time"
     t.boolean "verified"
     t.string "email"
+    t.integer "balance", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "balance", default: 0
+
   end
 
   create_table "videos", force: :cascade do |t|
@@ -104,6 +114,7 @@ ActiveRecord::Schema.define(version: 20170527210244) do
   add_foreign_key "charges", "sources"
   add_foreign_key "charges", "users"
   add_foreign_key "customers", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "plays", "users"
   add_foreign_key "plays", "videos"
   add_foreign_key "sources", "customers"

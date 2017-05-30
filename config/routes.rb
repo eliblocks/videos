@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :charges
   resources :videos
   resources :plays
+  resources :payments, only: [:new, :create]
 end
