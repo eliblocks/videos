@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529150907) do
+ActiveRecord::Schema.define(version: 20170601205413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "charges", force: :cascade do |t|
-    t.string "stripe_charge_id"
+    t.string "provider_charge_id"
     t.integer "amount"
     t.integer "amount_refunded"
     t.string "balance_transaction"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170529150907) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "stripe_customer_id"
+    t.string "provider_customer_id"
     t.bigint "user_id"
     t.integer "account_balance"
     t.integer "created"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170529150907) do
   end
 
   create_table "sources", force: :cascade do |t|
-    t.string "stripe_source_id"
+    t.string "provider_source_id"
     t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -91,10 +91,9 @@ ActiveRecord::Schema.define(version: 20170529150907) do
     t.string "updated_time"
     t.boolean "verified"
     t.string "email"
-    t.integer "balance", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
+    t.integer "balance", default: 0
   end
 
   create_table "videos", force: :cascade do |t|

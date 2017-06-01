@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'omniauth-facebook'
 # gem 'redis', '~> 3.0'
-gem 'stripe'
+
 
 gem 'wistia-api'
 # Use ActiveModel has_secure_password
