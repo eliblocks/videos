@@ -12,7 +12,6 @@ class PaymentsController < ApplicationController
       flash[:success] = "Payout successful, you will see the funds in your account in 2-5 business days"
       redirect_to root_url
     else
-      debugger
       render 'new'
     end
     seconds = params[:dollars].to_i * Rails.configuration.rate

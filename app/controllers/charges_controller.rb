@@ -1,4 +1,4 @@
-class ChargesController < ApplicationController
+class CheckoutsController < ApplicationController
   # before_action :set_amount, only: [:new, :create]
 
   def new

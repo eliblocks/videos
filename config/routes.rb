@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
 
   resources :users
-  resources :charges, only: [:new]
+  resources :checkouts
   resources :videos
   resources :plays
   resources :payments, only: [:new, :create]
