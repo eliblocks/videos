@@ -2,7 +2,7 @@ class ChargesController < ApplicationController
   before_action :set_amount, only: [:new, :create]
 
   def new
-
+    @charge = Charge.new
   end
 
   def index

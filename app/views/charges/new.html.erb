@@ -1,3 +1,4 @@
+<script src="https://core.spreedly.com/iframe/express-2.min.js"></script>
 <div class="columns">
   <div class="column">
     <div class="card">
@@ -8,6 +9,11 @@
 <div class="columns">
   <div class="column">
     <span>Pay</span>
+    <%= form_with model: @charge, id: "payment-form" do |f| %>
+      <%= hidden_field_tag :payment_method_token, id: "payment-method-token" %>
+      <%= button_tag "Enter Payment Info", onclick: "SpreedlyExpress.openView();" %>
+    <% end %>
+
   </div>
 </div>
 <div class="columns">
@@ -15,3 +21,20 @@
     <p>Terms and conditions apply</p>
   </div>
 </div>
+<script>
+  SpreedlyExpress.init('2VElBlix1oRuGGoaCMbUx6Uyqp1', {
+    "amount": "$9.83",
+    "company_name": "Acme Widgets"
+  });
+
+    SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
+
+    // Send requisite payment method info to backend
+    var tokenField = document.getElementById("payment_method_token");
+
+    tokenField.setAttribute("value", token);
+
+    var masterForm = document.getElementById('payment-form');
+    masterForm.submit();
+  });
+</script>
