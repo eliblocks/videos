@@ -1,7 +1,7 @@
 class Customer < ApplicationRecord
   belongs_to :user
   has_many :charges
-  has_many :sources
+  # has_many :sources
 
   def self.create_from_stripe(customer, user)
     create!(

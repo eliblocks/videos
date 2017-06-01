@@ -1,5 +1,5 @@
 class Charge < ApplicationRecord
-  belongs_to :source
+  # belongs_to :source
   belongs_to :user
 
   def self.create_from_stripe(charge, user)

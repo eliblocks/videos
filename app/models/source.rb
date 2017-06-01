@@ -1,6 +1,6 @@
 class Source < ApplicationRecord
-  belongs_to :customer
-  has_many :charges
+  # belongs_to :customer
+  # has_many :charges
 
   def self.create_from_stripe(charge, user)
     unless source_exists?(charge, user)

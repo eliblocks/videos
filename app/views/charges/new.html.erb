@@ -1,3 +1,5 @@
+<!-- <script src="https://core.spreedly.com/iframe/express-2.min.js"></script> -->
+<!-- 
 <div class="columns">
   <div class="column">
     <div class="card">
@@ -7,31 +9,42 @@
 </div>
 <div class="columns">
   <div class="column">
-    <%= form_tag charges_path do %>
+    <%#= form_tag charges_path, id: "payment-form" do %>
       <article>
-        <% if flash[:error].present? %>
+        <%# if flash[:error].present? %>
           <div id="error_explanation">
-            <p><%= flash[:error] %></p>
+            <p><%#= flash[:error] %></p>
           </div>
-        <% end %>
+        <% #end %>
         <label class="amount">
-          <span>Amount: <%= number_to_currency(@amount/100) %></span>
+          <span>Amount: <%#= number_to_currency(@amount/100) %></span>
         </label>
       </article>
-
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="500 Minutes"
-              data-amount=<%= @amount %>
-              data-locale="auto"
-              data-zip-code="true"
-              data-email=<%= current_user.email %>></script>
-
-    <% end %>
+      <%#= hidden_field_tag :amount, @amount %>
+      <%#= hidden_field_tag :payment_method_token %>
+      <%#= button_tag "Enter Payment Info", type: "button", onclick: "SpreedlyExpress.openView();" %> 
+    <%# end %>
   </div>
 </div>
 <div class="columns">
   <div class="column">
     <p>Terms and conditions apply</p>
   </div>
-</div>
+</div> -->
+<!-- <script>
+  SpreedlyExpress.init("2VElBlix1oRuGGoaCMbUx6Uyqp1", {
+    "amount": "$9.83",
+    "company_name": "Acme Widgets"
+  });
+  SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
+
+    // Send requisite payment method info to backend
+    var tokenField = document.getElementById("payment_method_token");
+
+    tokenField.setAttribute("value", token);
+
+    var masterForm = document.getElementById('payment-form');
+    masterForm.submit();
+  });
+</script>
+ -->
