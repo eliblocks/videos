@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require bulma.css
+ *= require font-awesome
  */
 
  
@@ -24,3 +25,51 @@
   box-shadow: none;
   pointer-events: none;
 }
+
+.card { 
+  height: 100%;
+}
+
+.card-image: {
+  position: relative;
+}
+
+.video-title {
+  font-size: 20px;
+  margin-bottom: 0px !important;
+}
+
+.vid-length {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.content {
+  margin: 5px;
+}
+
+.video-show-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.creator-info {
+  border-top: 1px solid #ccffcc;
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.video-column {
+  max-width: 640px;
+}
+
+#video-creator-name {
+  font-size: 20px;
+  margin-left: 20px;
+}
+

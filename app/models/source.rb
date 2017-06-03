@@ -1,26 +1,25 @@
 class Source < ApplicationRecord
-  belongs_to :customer
+  #belongs_to :customer
   has_many :charges
 
-  def self.create_from_stripe(charge, user)
-    unless source_exists?(charge, user)
+  def self.create_from_transaction(transaction, user)
+    unless source_exists?(transaction, user)
       create!(
-        stripe_source_id: charge.source.id,
-        customer_id: Customer.find_by_stripe(charge.customer)
+        provider_source_id: transaction.payment_method.token
       )
     end
   end
 
 
-  def self.source_exists?(charge, user)
+  def self.source_exists?(transaction, user)
     sources = user.sources
     if sources
-      return sources.map(&:stripe_source_id).include?(charge.source.id)
+      return sources.map(&:provider_source_id).include?(transaction.payment_method.token)
     end
     false
   end
 
-  def self.find_by_stripe(stripe_source_id)
-    find_by(stripe_source_id: stripe_source_id).id
+  def self.find_by_provider(provider_source_id)
+    find_by(provider_source_id: provider_source_id).id
   end
 end

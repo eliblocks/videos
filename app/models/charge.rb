@@ -2,18 +2,14 @@ class Charge < ApplicationRecord
   belongs_to :source
   belongs_to :user
 
-  def self.create_from_stripe(charge, user)
+  def self.create_from_transaction(transaction, user)
     create!(
+    source_id: Source.find_by_provider(transaction.payment_method.token),
     rate: Rails.configuration.rate,
-    stripe_charge_id: charge.id,
-    amount: charge.amount,
-    amount_refunded: charge.amount_refunded,
-    balance_transaction: charge.balance_transaction,
-    captured: charge.captured,
-    created: charge.created,
-    currency: charge.currency,
-    description: charge.description,
-    source_id: Source.find_by_stripe(charge.source.id),
+    provider_charge_id: transaction.token,
+    amount: transaction.amount,
+    created: transaction.created_at,
+    currency: transaction.currency_code,
     user_id: user.id
    )
   end

@@ -1,26 +1,32 @@
-<div class="nav">
+<div class="nav has-shadow">
   <div class="nav-left">
     <%= link_to root_url, class: "nav-item" do %>
       <span>VIDEOS</span>
     <% end %>
+    
   </div>
 
   <div class="nav-right">
     <% if logged_in? %>
-      <%= link_to logout_path, class: "nav-item" do %>
-        <span class="button">Logout</span>
+      
+      <%= link_to new_video_path, class: "nav-item" do %>
+        <span class="button is-primary">Upload</span>
       <% end %>
       <%= link_to new_charge_path, class: "nav-item" do %>
         <span class="button is-primary">Buy Minutes</span>
+      <% end %>
+      <%= link_to user_path(current_user), class: "nav-item" do %>
+        <span><%= current_user.balance/60 %></span>
       <% end %>
       <% if current_user.minutes > 4000 %>
         <%= link_to new_payment_path, class: "nav-item" do %>
           <span class="button is-primary">Cash Out</span>
         <% end %>
       <% end %>
-      <%= link_to user_path(current_user), class: "nav-item" do %>
-        <span><%= current_user.balance/60 %></span>
+      <%= link_to logout_path, class: "nav-item" do %>
+        <span class="button">Logout</span>
       <% end %>
+      
     <% else %>
       <%= link_to login_path, class: "nav-item" do %>
         <span class="button is-primary">Connect With Facebook</span>

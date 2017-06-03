@@ -1,26 +1,19 @@
 <script src="https://core.spreedly.com/iframe/express-2.min.js"></script>
 <div class="columns">
-  <div class="column">
+  <div class="column is-6-desktop">
     <div class="card">
-      <p>You can buy minutes to view videos here</p>
+      <div class="card-content">
+        <p class="title is-4">Buy 2000 minutes for $10<p>
+        <%= form_with model: @charge, id: "payment-form" do |f| %>
+        <%= hidden_field_tag :payment_method_token, id: "payment-method-token" %>
+        <%= button_tag "Enter Payment Info", onclick: "SpreedlyExpress.openView();", class: "button is-primary" %>
+      </div>
+
+    <% end %>
     </div>
   </div>
 </div>
-<div class="columns">
-  <div class="column">
-    <span>Pay</span>
-    <%= form_with model: @charge, id: "payment-form" do |f| %>
-      <%= hidden_field_tag :payment_method_token, id: "payment-method-token" %>
-      <%= button_tag "Enter Payment Info", onclick: "SpreedlyExpress.openView();" %>
-    <% end %>
 
-  </div>
-</div>
-<div class="columns">
-  <div class="column">
-    <p>Terms and conditions apply</p>
-  </div>
-</div>
 <script>
   SpreedlyExpress.init('2VElBlix1oRuGGoaCMbUx6Uyqp1', {
     "amount": "$9.83",

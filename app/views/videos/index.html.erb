@@ -1,9 +1,3 @@
-<div class="columns">
-  <div class="column">
-    <%= link_to "Upload A Video", new_video_path %>
-  </div>
-</div>
-
 <div class="columns is-multiline is-mobile">
   <% @videos.each do |video| %>
     <div class="column is-3-desktop is-4-tablet is-6-mobile">
@@ -14,11 +8,12 @@
               <%= image_tag video.thumbnail_url %>
             <% end %>
           </figure>
+          <span class="vid-length"> <%= youtube_time(video.length_in_seconds) %></span>
         </div>
-        <div class="card-content">
-          <p class="title is-4"><%= video.title %></p>
-          <p class="subtitle"><%= video.user.full_name %></p>
-          <p><%= youtube_time(video.length_in_seconds) %></p>
+        <div class="content">
+          <p class="video-title"><%= video.title %><p>     
+          <span><%= video.user.full_name %></span> | 
+          <span> <%= video.seconds_viewed/60 %> Min</span>
         </div>
       </div>
     </div>

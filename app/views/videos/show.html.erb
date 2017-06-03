@@ -1,24 +1,33 @@
 <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script>
 
 <div class="columns">
-  <div class="column">
-    <p><%= @video.title %></p>
+  <div class="column video-column">
     <%= content_tag(:div, "&nbsp;", 
                     class: "wistia_embed wistia_async_#{@video.wistia_id} autoPlay=true",
                     id: "wistia_vid",
                     style: "height:360px;width:640px",
                     data: { video_id: @video.wistia_id }) %>
+    <div class="video-info">
+      <p class="video-show-title"><%= @video.title %></p>
+      <p class="video-show-minutes"><%= @video.seconds_viewed/60 %> minutes watched</p>
+    </div>
+    <div class="creator-info">
+      <%= link_to user_path(@video.user) do %>
+        <%=image_tag @video.user.image, size: "100x100" %>
+      <% end %>
+      <%= link_to user_path(@video.user) do %>
+        <%= content_tag :p, @video.user.full_name, id: "video-creator-name" %>
+      <% end %>
+  
+    </div>
   </div>
 </div>
-<div class="columns">
-  <div class="column">
-    <%= form_with model: Play.new, id: "play" do |f| %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :video_id, value: @video.id %>
-      <%= f.hidden_field :length_in_seconds, value: 0, id: "length_in_seconds" %>
-    <% end %>
-  </div>
-</div>
+
+<%= form_with model: Play.new, id: "play" do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :video_id, value: @video.id %>
+  <%= f.hidden_field :length_in_seconds, value: 0, id: "length_in_seconds" %>
+<% end %>
 
 <script>
 counter = 0;
