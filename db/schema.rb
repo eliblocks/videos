@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601205413) do
+ActiveRecord::Schema.define(version: 20170603180051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170601205413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "balance", default: 0
+    t.boolean "admin", default: false
   end
 
   create_table "videos", force: :cascade do |t|
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170601205413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "wistia_delivery_id"
+    t.boolean "approved", default: false
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
