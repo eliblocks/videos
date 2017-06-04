@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :charges
+    resources :customers
+    resources :payments
+    resources :plays
+    resources :sources
+    resources :users
+    resources :videos
+
+    root to: "charges#index"
+  end
+
   get 'users/index'
 
   get 'users/show'
