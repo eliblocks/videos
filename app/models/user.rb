@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_one :customer
   has_many :charges
   has_many :sources, through: :customer
-  has_many :videos
+  has_many :videos, dependent: :destroy
   has_many :plays
 
   def process(auth)
@@ -40,4 +40,71 @@ class User < ApplicationRecord
   def dollars
     balance / Rails.configuration.rate
   end
+
+  def uploader?
+    if dollars > 20
+      return true
+    end
+    false
+  end
+
+  def last_purchase
+    charges.order(created_at: :desc).first
+  end
+
+  def spent_since_last_purchase
+    plays.where(created_at > last_purchase.created_at).sum(:length_in_seconds)
+  end
+
+  def video_play_sums
+    videos_times = {}
+    plays.each do |play|
+      if videos_times.keys.include?(play.video_id)
+        videos_times[play.video_id] += play.length_in_seconds
+      else
+        videos_times[play.video_id] = play.length_in_seconds
+      end
+    end
+    videos_times
+  end
+
+  def most_watched_videos(n)
+    if n > video_play_sums.length
+      n = video_play_sums.length
+    end
+    minimum_time = video_play_sums.values.sort.reverse[n-1]
+    top_watches = video_play_sums.select { |k, v| v >= minimum_time }
+    top_watches.transform_keys { |k| Video.find(k) }
+  end
+
+  def uploader_play_sums
+    uploader_times = {}
+    plays.includes(:video).each do |play|
+      if uploader_times.keys.include?(play.video.user_id)
+        uploader_times[play.video.user_id] += play.length_in_seconds
+      else
+        uploader_times[play.video.user_id] = play.length_in_seconds
+      end
+    end
+    uploader_times
+  end
+
+  def most_watched_uploaders(n)
+    if n > uploader_play_sums.length
+      n = uploader_play_sums.length
+    end
+    minimum_time = uploader_play_sums.values.sort.reverse[n-1]
+    top_watches = uploader_play_sums.select { |k, v| v >= minimum_time }
+    top_watches.transform_keys { |k| User.find(k) }
+  end
+
+  def total_minutes_earned
+    videos.pluck(:seconds_viewed).reduce(:+)/60
+  end
+
+
+
+
+
+
 end

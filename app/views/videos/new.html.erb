@@ -22,7 +22,7 @@
       <%= f.hidden_field :wistia_delivery_id %>
       <div class="field">
         <div class="control">
-          <%= f.submit "Submit", class: "button is-primary", id: "video-submit" %>
+          <%= f.submit "Submit", class: "button is-primary", id: "video-submit", disabled: true %>
         </div>
       </div>
     <% end %>
@@ -40,6 +40,7 @@ _wapiq.push(function(W) {
   wistiaUploader.bind("uploadembeddable", function(file, media, embedCode, oembedResponse) {
     console.log("Here's the media in Wistia: ", media);
     addMediaInfo(media); // save the embed code to your database to display the video in the future
+    $("#video-submit").prop("disabled", false);
   });
 
 });

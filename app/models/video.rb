@@ -10,4 +10,12 @@ class Video < ApplicationRecord
   def add_seconds_viewed!(seconds)
     update!(seconds_viewed: seconds_viewed + seconds)
   end
+
+  def approve
+    update(approved: true)
+  end
+
+  def unapprove
+    update(approved: false)
+  end
 end

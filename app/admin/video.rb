@@ -24,6 +24,7 @@ ActiveAdmin.register Video do
 
 
   index do
+    selectable_column
     column :user
     column :title
     column :description
@@ -33,6 +34,25 @@ ActiveAdmin.register Video do
     column :created_at
     column :updated_at
     actions
+  end
+
+  ActiveAdmin.register Video do
+    batch_action :approve do |ids|
+      batch_action_collection.find(ids).each do |video|
+        video.approve
+      end
+    redirect_to collection_path, alert: "The videos have been approved."
+    end
+  end
+
+
+  ActiveAdmin.register Video do
+    batch_action :unapprove do |ids|
+      batch_action_collection.find(ids).each do |video|
+        video.unapprove
+      end
+    redirect_to collection_path, alert: "The videos have been unapproved."
+    end
   end
 
 
