@@ -4,14 +4,11 @@ Wistia.password = ENV['WISTIA_SECRET_KEY']
 class VideosController < ApplicationController
 
   def index
-    @videos = Video.where(approved: true)
-
     if logged_in?
-      @videos = @videos.select { |vid| vid.approved || vid.user.id == current_user.id }
+      @videos = Video.all.select { |vid| vid.approved || vid.user.id == current_user.id }
     else
       @videos = Video.where(approved: true)
     end
-
   end
 
   def show
@@ -38,7 +35,8 @@ class VideosController < ApplicationController
   end
 
   def search
-    @videos = Video.all
+    @query = params[:q]
+    @videos = Video.algolia_search(@query)
     render 'index'
   end
 
