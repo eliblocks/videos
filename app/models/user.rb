@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :videos, dependent: :destroy
   has_many :plays
 
+  validates :facebook_id, uniqueness: true
+  validates :email, uniqueness: true
+
   def process(auth)
     if auth.extra.raw_info.nil?
       process_guest(auth)

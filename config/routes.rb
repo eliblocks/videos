@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
   get 'account', to: 'users#account'
   get 'search', to: 'videos#search'
+  get 'test_login', to: 'sessions#test_login'
 
   resources :users
   resources :charges

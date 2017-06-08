@@ -13,10 +13,14 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    @play = Play.new
-    unless logged_in?
+    if !logged_in?
       flash[:danger] = "You need to be logged in to watch videos"
       redirect_to root_url
+    elsif current_user.balance < @video.length_in_seconds
+      flash[:danger] = "You don't have enoguh minutes to view this video"
+      redirect_to root_url
+    else
+      @play = Play.new
     end
   end
 

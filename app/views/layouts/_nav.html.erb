@@ -52,11 +52,13 @@
       <%= link_to login_path, class: "nav-item" do %>
         <span class="button is-primary">Connect With Facebook</span>
       <% end %>
+      <%= link_to '/test_login', class: "nav-item" do %>
+        <span class="button is-primary">Test Login</span>
+      <% end %>
     </div>
   <% end %>
 </div>
 <script>
-
   $("#dropdown-button").click(function() {
     $("#dropdown-content").toggle();
   });
