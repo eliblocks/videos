@@ -1,6 +1,22 @@
 class Video < ApplicationRecord
+  include AlgoliaSearch
   belongs_to :user
   has_many :plays
+
+  algoliasearch if: :approved?, per_environment: true do
+    attribute :title,
+              :description,
+              :user_id,
+              :seconds_viewed,
+              :length_in_seconds,
+              :wistia_id,
+              :wistia_delivery_id,
+              :created_at
+
+    searchableAttributes ['title']
+    customRanking ['desc(seconds_viewed)']
+    hitsPerPage 30
+  end
 
   def thumbnail_url
     folder = "https://embed-ssl.wistia.com/deliveries/"
@@ -10,4 +26,14 @@ class Video < ApplicationRecord
   def add_seconds_viewed!(seconds)
     update!(seconds_viewed: seconds_viewed + seconds)
   end
+
+  def approve
+    update(approved: true)
+  end
+
+  def unapprove
+    update(approved: false)
+  end
+
+
 end

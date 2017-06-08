@@ -1,0 +1,32 @@
+<div class="account">  
+  <div class="columns">
+    <div class="column">
+      <h2>Balance: <%= @user.minutes %> minutes</h2>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <p><%= "Used #{@minutes_used} minutes in the last #{@last_days} days" %></p>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <p>Most watched videos</p>
+      <% @most_watched_videos.each do |video, seconds| %>
+        <p><%= video.title %>: <%= seconds/60 %> min</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <p>Most watched creators</p>
+        <% @most_watched_uploaders.each do |user, seconds| %>
+          <p><%= user.full_name %>: <%= seconds/60 %> min</p>
+        <% end %>
+    </div>
+  </div>
+  <%= link_to "Buy Minutes", new_charge_path %>
+  <% if @user.uploader? %>
+    <%= link_to "Cash out", new_charge_path %>
+  <% end %>
+</div>

@@ -31,7 +31,9 @@ gem 'omniauth-facebook'
 gem 'spreedly'
 
 gem 'wistia-api'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'activeadmin'
+gem 'algoliasearch-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

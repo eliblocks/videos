@@ -73,3 +73,29 @@
   margin-left: 20px;
 }
 
+#user_name {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#user_card {
+  border-bottom: 2px solid gray;
+}
+
+#dropdown-content {
+  box-shadow: 0 0 8px #777;
+  display: none;
+  position: absolute;
+  top: 50px;
+  z-index: 9999;
+  background-color: white;
+}
+
+.nav-right {
+  overflow: inherit;
+}
+
+#balance {
+  font-weight: bold;
+  font-size: 20px;
+}
