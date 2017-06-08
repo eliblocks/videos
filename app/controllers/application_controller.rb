@@ -14,4 +14,16 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     redirect_to login_path unless logged_in?
   end
+
+  def authorize
+    if !logged_in?
+      flash[:danger] = "You must be logged in to perform that action"
+      redirect_to root_url
+    end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
 end

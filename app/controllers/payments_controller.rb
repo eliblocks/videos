@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  before_action :authorize
 
   def new
     @payment = Payment.new

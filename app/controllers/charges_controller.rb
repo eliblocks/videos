@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   before_action :set_amount, only: [:new, :create]
+  before_action :authorize
 
   def new
     @charge = Charge.new

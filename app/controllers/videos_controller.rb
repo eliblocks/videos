@@ -2,6 +2,7 @@ require 'wistia'
 Wistia.password = ENV['WISTIA_SECRET_KEY']
 
 class VideosController < ApplicationController
+  before_action :authorize, only: [:new, :create]
 
   def index
     if logged_in?
