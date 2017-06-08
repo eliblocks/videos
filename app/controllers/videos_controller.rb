@@ -18,7 +18,7 @@ class VideosController < ApplicationController
       flash[:danger] = "You need to be logged in to watch videos"
       redirect_to root_url
     elsif current_user.balance < @video.length_in_seconds
-      flash[:danger] = "You don't have enoguh minutes to view this video"
+      flash[:danger] = "You don't have enough minutes to view this video"
       redirect_to root_url
     else
       @play = Play.new
