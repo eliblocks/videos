@@ -5,8 +5,10 @@ class User < ApplicationRecord
   has_many :videos, dependent: :destroy
   has_many :plays
 
-  validates :facebook_id, uniqueness: true
-  validates :email, uniqueness: true
+  validates :facebook_id, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :full_name, presence: true, length: { maximum: 50, minimum: 5 }
+
 
   def process(auth)
     if auth.extra.raw_info.nil?
