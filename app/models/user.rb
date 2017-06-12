@@ -11,6 +11,9 @@ class User < ApplicationRecord
 
 
   def process(auth)
+    if Rails.env == 'development'
+      puts auth
+    end
     if auth.extra.raw_info.nil?
       process_guest(auth)
     else
