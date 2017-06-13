@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
-  get 'users/index'
 
-  get 'users/show'
+  ActiveAdmin.routes(self)
 
   root 'videos#index'
 
+
+  get '/about', to: 'static#about'
+  get '/eula', to: 'static#eula'
   get 'auth/facebook/callback', to: 'sessions#create'
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'

@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="field">
-        <div id="wistia_uploader" style="height:360px;width:100%;"></div>
+        <div id="wistia_uploader" style="height:360px;width:100%" data-project="<%= @project %>"></div>
       </div>
       <%= f.hidden_field :length_in_seconds %>
       <%= f.hidden_field :wistia_id %>
@@ -35,7 +35,7 @@ _wapiq.push(function(W) {
   window.wistiaUploader = new W.Uploader({
     accessToken: '7583b7e3465fbaaa70163ab255a0f9581b9817755d4dac04d4b75556c5e61da9',
     dropIn: "wistia_uploader",
-    projectId: "9hyra9x33g"
+    projectId: document.getElementById("wistia_uploader").dataset.project
   });
   wistiaUploader.bind("uploadembeddable", function(file, media, embedCode, oembedResponse) {
     console.log("Here's the media in Wistia: ", media);

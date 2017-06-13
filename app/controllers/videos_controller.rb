@@ -28,6 +28,13 @@ class VideosController < ApplicationController
   def new
     @video = Video.new
     @password = ENV['WISTIA_SECRET_KEY']
+    if Rails.env == 'development'
+      @project = 'ma2vo0l9bd'
+    elsif Rails.env == 'production'
+      @project = '9hyra9x33g'
+    elsif Rails.env == 'test'
+      @project == 'ma2vo0l9bd'
+    end
   end
 
   def create
