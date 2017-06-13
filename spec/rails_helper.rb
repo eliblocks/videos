@@ -1,27 +1,55 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require 'capybara/rspec'
-ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
   provider: 'facebook',
-  uid: '5041670272',
+  uid: '101087770504462',
   info: {
-    email: 'joe@bloggs.com',
-    name: 'Joe Bloggs',
-    image: 'http://graph.facebook.com/1234567/picture?type=square',
-    verified: 'true'
+    first_name: 'Dick',
+    last_name: 'Fallersky',
+    email: 'zgqrnhoyqm_1497307277@tfbnw.net',
+    name: 'Dick Alahjigagcbdf Fallersky',
+    image: 'http://graph.facebook.com/v2.9/101087770504462/picture?width=480&height=480',
+    verified: false
+  },
+  credentials: {
+    expires: true,
+    expires_at: 1502562151,
+    token: "EAAJG0ZAnQkCUBAECY4rZBfJ3ZBJtAfoRZCeo01wKYn9XJAZC3GZBeQHIopjDBGAInOooiGcEs9sQwG4hvbpYe5X60gib5IdLPGQntPLrCottc3qUJRZALvlNdL4cgODqz39cZB33lM8uC3lLopafRFHSOFrdZBQ3xyVN7OKYLNy5AtQZDZD"
+  },
+  extra: {
+    raw_info: {
+      id: '101087770504462',
+      name: 'Joe Bloggs',
+      first_name: 'Dick',
+      last_name: 'Fallersky',
+      link: 'https://www.facebook.com/app_scoped_user_id/101087770504462/',
+      location: { id: '123456789', name: 'Palo Alto, California' },
+      gender: 'male',
+      email: 'zgqrnhoyqm_1497307277@tfbnw.net',
+      timezone: 0,
+      locale: 'en_US',
+      verified: false,
+      updated_time: '2017-06-13T18:22:15+0000',
+      age_range: { max: 20, min: 18 }
+    }
   }
 })
 
 
 
   # etc.
-})
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -36,12 +64,7 @@ OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
-#
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-# Checks for pending migration and applies them before tests are run.
-# If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -51,6 +74,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = false
+  config.include Features, type: :feature
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

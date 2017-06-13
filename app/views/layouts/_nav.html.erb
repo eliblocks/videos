@@ -19,7 +19,7 @@
       <%= link_to new_video_path, class: "nav-item" do %>
         <span class="button is-primary">Upload</span>
       <% end %>
-      <%= link_to new_charge_path, class: "nav-item" do %>
+      <%= link_to new_charge_path, class: "nav-item", id: 'buy' do %>
         <span class="button is-primary">Buy Minutes</span>
       <% end %>
       <div class="dropdown nav-item">
@@ -49,7 +49,7 @@
     </div>
   <% else %>
     <div class="nav-right">    
-      <%= link_to login_path, class: "nav-item" do %>
+      <%= link_to login_path, class: "nav-item", id: "sign-in" do %>
         <span class="button is-primary">Connect With Facebook</span>
       <% end %>
       <%= link_to '/test_login', class: "nav-item" do %>
