@@ -11,6 +11,8 @@ module Videos
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
+    config.eager_load_paths << "#{Rails.root}/lib"
+
     # USD/seconds currency conversion 1 USD gets 12000 seconds of viewing time.
     config.rate = 12000
     config.commission = 0.30

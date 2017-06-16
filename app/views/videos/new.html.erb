@@ -1,6 +1,12 @@
 <script src="//fast.wistia.com/assets/external/api.js" async></script>
 <link rel="stylesheet" href="//fast.wistia.com/assets/external/uploader.css" />
-
+<% if @video.errors.any? %>
+  <ul>
+    <% @video.errors.full_messages.each do |msg| %>
+      <li class="notification is-danger"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div class="columns">
   <div class="column is-half desktop">
     <%= form_for @video do |f| %>
@@ -15,7 +21,7 @@
         </div>
       </div>
       <div class="field">
-        <div id="wistia_uploader" style="height:360px;width:100%" data-project="<%= @project %>"></div>
+        <%= wistia_uploader %>
       </div>
       <%= f.hidden_field :length_in_seconds %>
       <%= f.hidden_field :wistia_id %>
@@ -37,6 +43,7 @@ _wapiq.push(function(W) {
     dropIn: "wistia_uploader",
     projectId: document.getElementById("wistia_uploader").dataset.project
   });
+  console.log(document.getElementById("wistia_uploader").dataset.project);
   wistiaUploader.bind("uploadembeddable", function(file, media, embedCode, oembedResponse) {
     console.log("Here's the media in Wistia: ", media);
     addMediaInfo(media); // save the embed code to your database to display the video in the future

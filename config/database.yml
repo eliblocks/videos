@@ -5,5 +5,5 @@ development:
 
 test: 
   adapter: postgresql
-  database: videos_development
+  database: videos_test
   pool: 5

@@ -27,7 +27,7 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new
-    @password = ENV['WISTIA_SECRET_KEY']
+
     if Rails.env == 'development'
       @project = 'ma2vo0l9bd'
     elsif Rails.env == 'production'
@@ -45,7 +45,6 @@ class VideosController < ApplicationController
       flash[:info] = "Video will be public once it has been approved. Since this app is currently in testing phase, you can approve your own video by visiting /admin."
       redirect_to root_url
     else
-      flash[:danger] = @video.errors.full_messages
       render 'new'
     end
   end
