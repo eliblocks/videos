@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get '/about', to: 'static#about'
   get '/eula', to: 'static#eula'
+  get '/terms', to: 'static#terms'
+  get '/paymentaddendum', to: 'static#paymentaddendum'
   get 'auth/facebook/callback', to: 'sessions#create'
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
