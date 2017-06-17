@@ -4,11 +4,13 @@ Rails.application.routes.draw do
 
   root 'videos#index'
 
-
   get '/about', to: 'static#about'
   get '/eula', to: 'static#eula'
   get '/terms', to: 'static#terms'
   get '/paymentaddendum', to: 'static#paymentaddendum'
+  get '/privacy', to: 'static#privacy'
+  get '/contact', to: 'static#contact'
+
   get 'auth/facebook/callback', to: 'sessions#create'
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
