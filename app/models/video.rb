@@ -27,7 +27,7 @@ class Video < ApplicationRecord
 
   def thumbnail_url
     folder = "https://embed-ssl.wistia.com/deliveries/"
-    "#{folder}#{wistia_delivery_id}.jpg?image_crop_resized=300x169&image_quality=100&ssl=true&video_still_time=3"
+    "#{folder}#{wistia_delivery_id}.jpg?image_crop_resized=300x169&image_quality=100&ssl=true"
   end
 
   def add_seconds_viewed!(seconds)

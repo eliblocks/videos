@@ -34,6 +34,8 @@ gem 'wistia-api'
 gem 'font-awesome-rails'
 gem 'activeadmin'
 gem 'algoliasearch-rails'
+gem 'faraday'
+gem 'faker'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

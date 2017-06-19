@@ -30,7 +30,7 @@
   height: 100%;
 }
 
-.card-image {
+.video-image {
   position: relative;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .creator-info {
-  border-top: 1px solid #ccffcc;
+  border-top: 1px solid #c0c5ce;
   margin-top: 20px;
   padding-top: 20px;
   display: flex;
@@ -116,4 +116,8 @@ h6 {
 
 .nested-list {
   list-style-type: lower-alpha !important;
+}
+
+.plain-link {
+  color: black;
 }

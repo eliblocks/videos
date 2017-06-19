@@ -7,9 +7,13 @@ Test card number: 4111 1111 1111 1111
     <div class="card">
       <div class="card-content">
         <p class="title is-4">Buy 2000 minutes for $10<p>
-        <%= form_with model: @charge, id: "payment-form" do |f| %>
+        <%= form_for @charge do |f| %>
         <%= hidden_field_tag :payment_method_token, id: "payment-method-token" %>
-        <%= button_tag "Enter Payment Info", onclick: "SpreedlyExpress.openView();", class: "button is-primary" %>
+        <%= button_tag "Enter Payment Info", 
+                        onclick: "SpreedlyExpress.openView();", 
+                        class: "button is-primary", 
+                        id: 'launch-spreedly',
+                        type: "button" %>
       </div>
 
     <% end %>
@@ -23,14 +27,12 @@ Test card number: 4111 1111 1111 1111
     "company_name": "Browzable"
   });
 
-    SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
+  SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
 
-    // Send requisite payment method info to backend
+  // Send requisite payment method info to backend
     var tokenField = document.getElementById("payment_method_token");
-
     tokenField.setAttribute("value", token);
-
-    var masterForm = document.getElementById('payment-form');
+    var masterForm = document.getElementById('new_charge');
     masterForm.submit();
   });
 </script>

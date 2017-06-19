@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  has_one :customer
+  # has_one :customer
   has_many :charges
-  has_many :sources, through: :customer
+  has_many :payments
+  has_many :sources
   has_many :videos, dependent: :destroy
   has_many :plays
 
@@ -60,6 +61,20 @@ class User < ApplicationRecord
     charges.order(created_at: :desc).first
   end
 
+  def seconds_purchased
+    (charges.pluck(:amount).reduce(:+) / 100) * Rails.configuration.rate
+  end
+
+  def seconds_played
+    plays.pluck(:length_in_seconds).reduce(:+)
+  end
+
+  def seconds_paid
+    payments.pluck(:amount, :rate).map { |pay|
+      (pay.amount / 100) * Rails.configuration.rate
+    }.reduce(:+)
+  end
+
   def spent_since_last_purchase
     plays.where(created_at > last_purchase.created_at).sum(:length_in_seconds)
   end
@@ -109,10 +124,5 @@ class User < ApplicationRecord
   def total_minutes_earned
     videos.pluck(:seconds_viewed).reduce(:+)/60
   end
-
-
-
-
-
 
 end

@@ -13,4 +13,8 @@ class Charge < ApplicationRecord
     user_id: user.id
    )
   end
+
+  def dollars
+    amount * 100
+  end
 end

@@ -16,6 +16,13 @@ module Videos
     # USD/seconds currency conversion 1 USD gets 12000 seconds of viewing time.
     config.rate = 12000
     config.commission = 0.30
+
+    if Rails.env == 'development' || Rails.env == 'test'
+      config.gateway_token = '6pnm3uesJujkZtx1qkZBPd73F5D'
+    else
+      config.gateway_token = '6pnm3uesJujkZtx1qkZBPd73F5D'
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
