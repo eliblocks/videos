@@ -22,4 +22,6 @@ module ApplicationHelper
     end
     tag.div(id: 'wistia_uploader', style: 'height:360px;width:100%', data: { project: project_id })
   end
+
+
 end

@@ -15,18 +15,18 @@ User.create!(facebook_id: '1041670272', full_name: "Eli Block", email: 'eliyahu.
             full_name:    Faker::Name.name,
             email:        Faker::Internet.email,
             gender:       "male",
-            image:        Faker::Avatar.image)
+            image:        Faker::Avatar.image,
+            balance:      0)
 
 end
-
 
 
 User.all.each do |user|
   source = Source.create!(user_id: user.id, provider_source_id: Random.new.rand(100000000))
   Charge.create!(user_id: user.id,
                   amount: 1000,
-                  provider_charge_id:
-                  Random.new.rand(100000000),
+                  seconds: 10 * Rails.configuration.rate,
+                  provider_charge_id: Random.new.rand(100000000),
                   source_id: source.id)
 end
 
@@ -46,10 +46,14 @@ project.medias.each do |media|
 end
 
 Video.all.each do |vid|
-  random.times do
-    Play.create!(user_id: User.all[random].id, video_id: vid.id, length_in_seconds: 10)
+  (random * 10).times do
+    Play.create!(user_id: User.all[random].id, video_id: vid.id, length_in_seconds: 1000)
   end
 end
+
+
+
+
 
 
 

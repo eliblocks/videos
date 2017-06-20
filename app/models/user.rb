@@ -62,17 +62,15 @@ class User < ApplicationRecord
   end
 
   def seconds_purchased
-    (charges.pluck(:amount).reduce(:+) / 100) * Rails.configuration.rate
+    charges.sum(:seconds) || 0
   end
 
   def seconds_played
-    plays.pluck(:length_in_seconds).reduce(:+)
+    plays.sum(:length_in_seconds) || 0
   end
 
   def seconds_paid
-    payments.pluck(:amount, :rate).map { |pay|
-      (pay.amount / 100) * Rails.configuration.rate
-    }.reduce(:+)
+    payments.sum(:seconds) || 0
   end
 
   def spent_since_last_purchase

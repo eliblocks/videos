@@ -9,7 +9,7 @@
                     data: { video_id: @video.wistia_id }) %>
     <div class="video-info">
       <p class="video-show-title"><%= @video.title %></p>
-      <p class="video-show-minutes"><%= @video.seconds_viewed/60 %> minutes watched</p>
+      <p class="video-show-minutes"><%= number_to_human(@video.seconds_viewed/60) %> minutes watched</p>
     </div>
     <div class="creator-info">
       <%= link_to user_path(@video.user) do %>

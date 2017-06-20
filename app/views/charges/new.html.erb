@@ -4,20 +4,17 @@ Test card number: 4111 1111 1111 1111
 </div>
 <div class="columns">
   <div class="column is-6-desktop">
-    <div class="card">
-      <div class="card-content">
-        <p class="title is-4">Buy 2000 minutes for $10<p>
-        <%= form_for @charge do |f| %>
-        <%= hidden_field_tag :payment_method_token, id: "payment-method-token" %>
-        <%= button_tag "Enter Payment Info", 
-                        onclick: "SpreedlyExpress.openView();", 
-                        class: "button is-primary", 
-                        id: 'launch-spreedly',
-                        type: "button" %>
-      </div>
+    <h4 class="title is-4">Buy Minutes</h4>
+    <p>Browzable minutes allow you to view any video on the site. As you watch, minutes will be deducted from your balance. Every &cent;1 gets you 2 minutes.</p><br>
 
+    <%= form_for @charge do |f| %>
+    <%= hidden_field_tag :payment_method_token, id: "payment-method-token" %>
+    <%= button_tag "2000 Minutes for $10", 
+                    onclick: "SpreedlyExpress.openView();", 
+                    class: "button is-primary", 
+                    id: 'launch-spreedly',
+                    type: "button" %>
     <% end %>
-    </div>
   </div>
 </div>
 

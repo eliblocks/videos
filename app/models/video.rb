@@ -42,5 +42,11 @@ class Video < ApplicationRecord
     update(approved: false)
   end
 
+  def seconds_played
+    plays.sum(:length_in_seconds) || 0
+  end
 
+  def minutes_viewed
+    seconds_viewed/60
+  end
 end
