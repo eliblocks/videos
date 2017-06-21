@@ -311,6 +311,7 @@ DEPENDENCIES
   faraday
   font-awesome-rails
   jbuilder (~> 2.5)
+  kaminari
   listen (>= 3.0.5, < 3.2)
   omniauth-facebook
   pg (~> 0.18)

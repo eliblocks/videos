@@ -9,6 +9,8 @@ class Video < ApplicationRecord
   validates :title, presence: true, length: { maximum: 25, minimum: 3 }
   validates :description, length: { minimum: 20, maximum: 255 }
 
+  scope :approved, -> { where(approved: true) }
+
 
   algoliasearch if: :approved?, per_environment: true do
     attribute :title,
@@ -25,6 +27,10 @@ class Video < ApplicationRecord
     hitsPerPage 30
   end
 
+
+
+
+
   def thumbnail_url
     folder = "https://embed-ssl.wistia.com/deliveries/"
     "#{folder}#{wistia_delivery_id}.jpg?image_crop_resized=300x169&image_quality=100&ssl=true"
@@ -33,6 +39,7 @@ class Video < ApplicationRecord
   def add_seconds_viewed!(seconds)
     update!(seconds_viewed: seconds_viewed + seconds)
   end
+
 
   def approve
     update(approved: true)

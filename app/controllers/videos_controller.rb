@@ -5,11 +5,7 @@ class VideosController < ApplicationController
   before_action :authorize, only: [:new, :create]
 
   def index
-    if logged_in?
-      @videos = Video.all.select { |vid| vid.approved || vid.user.id == current_user.id }
-    else
-      @videos = Video.where(approved: true)
-    end
+    @videos = Video.approved.order(seconds_viewed: :desc).page(params[:page]).per(5)
   end
 
   def show

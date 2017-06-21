@@ -4,14 +4,14 @@ Test card number: 4111 1111 1111 1111
 </div>
 <div class="columns">
   <div class="column is-6-desktop">
-    <h4 class="title is-4">Buy Minutes</h4>
-    <p>Browzable minutes allow you to view any video on the site. As you watch, minutes will be deducted from your balance. Every &cent;1 gets you 2 minutes.</p><br>
+    <h3 class="title is-3">Buy Minutes</h3>
+    <p class="sales-message">Browzable minutes allow you to view any video on the site. As you watch, minutes will be deducted from your balance. Your minutes last for a full year, so no need to plan ahead, just reload when you need. Every &cent;1 gets you 2 minutes.</p><br>
 
     <%= form_for @charge do |f| %>
     <%= hidden_field_tag :payment_method_token, id: "payment-method-token" %>
     <%= button_tag "2000 Minutes for $10", 
                     onclick: "SpreedlyExpress.openView();", 
-                    class: "button is-primary", 
+                    class: "button is-success is-large", 
                     id: 'launch-spreedly',
                     type: "button" %>
     <% end %>

@@ -5,12 +5,12 @@
         <%=image_tag @user.image%>
       </figure>
         <h3 class="title is-3" id="user_name"><%= @user.full_name %></h3>
-        <span><%= @user.videos.count %> videos</span> | 
+        <span><%= @videos.count %> videos</span> | 
         <span><%= @user.total_minutes_earned %></span> min
     </div>
   </div>
   <div class="columns is-multiline is-mobile" id="user_videos">
-    <% @user.videos.each do |video| %>
+    <% @videos.each do |video| %>
       <div class="column is-3-desktop is-4-tablet is-6-mobile">
         <div class="card">
           <div class="card-image">

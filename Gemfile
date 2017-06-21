@@ -36,6 +36,7 @@ gem 'activeadmin'
 gem 'algoliasearch-rails'
 gem 'faraday'
 gem 'faker'
+gem 'kaminari'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
