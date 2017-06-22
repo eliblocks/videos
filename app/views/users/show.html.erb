@@ -9,27 +9,7 @@
         <span><%= @user.total_minutes_earned %></span> min
     </div>
   </div>
-  <div class="columns is-multiline is-mobile" id="user_videos">
-    <% @videos.each do |video| %>
-      <div class="column is-3-desktop is-4-tablet is-6-mobile">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-300x169">
-              <%= link_to video_path(video) do %>
-                <%= image_tag video.thumbnail_url %>
-              <% end %>
-            </figure>
-            <span class="vid-length"> <%= youtube_time(video.length_in_seconds) %></span>
-          </div>
-          <div class="content">
-            <p class="video-title"><%= video.title %></p>     
-            <span><%= video.user.full_name %></span> | 
-            <span> <%= video.seconds_viewed/60 %> Min</span>
-          </div>
-        </div>
-      </div>
-    <% end%>
-  </div>
+  <%= render 'shared/videos' %>
 </div>
 
 

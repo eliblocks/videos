@@ -1,0 +1,19 @@
+<div class="columns is-multiline is-mobile">
+  <% @videos.each do |video| %>
+    <div class="column is-3-desktop is-4-tablet is-6-mobile">
+      <div class="video-image">
+        <figure class="image is-300x169">
+          <%= link_to video_path(video), class: "video-image-link" do %>
+            <%= image_tag video.thumbnail_url %>
+          <% end %>
+        </figure>
+        <span class="vid-length"> <%= youtube_time(video.length_in_seconds) %></span>
+      </div>
+      <div class="content">
+        <p class="video-title"><%= link_to video.title, video_path(video), class: "plain-link" %></p>     
+        <%= link_to video.user.full_name, user_path(video.user), class: "plain-link video-title-link" %> | 
+        <span> <%= number_to_human(video.minutes_viewed) %> views</span>
+      </div>
+    </div>
+  <% end %>
+</div>

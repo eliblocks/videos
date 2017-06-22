@@ -31,13 +31,10 @@
           <li>
             <%= link_to "Account", account_path(@user) %>
           </li>
-          <% if current_user.minutes > 4000 %>
-            <li>
-              <%= link_to "Cash Out", new_payment_path %>
-            </li>
+          <% if current_user.uploader? %>
             <li>
               <%= link_to "Profile", user_path(current_user) %>
-            </li>
+            </li>            
           <% end %>
           <li>
             <%= link_to "Log out", logout_path %>

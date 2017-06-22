@@ -51,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def uploader?
-    if dollars > 20
+    if videos.count > 0
       return true
     end
     false
