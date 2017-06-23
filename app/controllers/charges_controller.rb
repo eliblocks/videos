@@ -50,7 +50,7 @@ class ChargesController < ApplicationController
   end
 
   def set_amount
-    @amount = 2001
+    @amount = 10
   end
 
 end
