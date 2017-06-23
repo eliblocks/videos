@@ -1,7 +1,7 @@
 class CreateCharges < ActiveRecord::Migration[5.1]
   def change
     create_table :charges do |t|
-      t.string :stripe_charge_id
+      t.string :gateway_charge_id
       t.integer :amount
       t.integer :amount_refunded
       t.string :balance_transaction
@@ -10,7 +10,7 @@ class CreateCharges < ActiveRecord::Migration[5.1]
       t.string :currency
       t.string :description
       t.boolean :success
-      t.references :source, foreign_key: true
+
       t.references :user, foreign_key: true
       t.timestamps
     end
