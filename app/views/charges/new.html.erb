@@ -4,13 +4,13 @@ Test card number: 4111 1111 1111 1111
 </div>
 <div class="columns">
   <div class="column is-6-desktop">
-    <h3 class="title is-3">Buy Minutes</h3>
-    <p class="sales-message">Browzable minutes allow you to view any video on the site. As you watch, minutes will be deducted from your balance. Your minutes last for a full year, so no need to plan ahead, just reload when you need. Every &cent;1 gets you 2 minutes.</p><br>
+    <h3 class="title is-3">2,000 Minutes for $10</h3>
+    <p class="sales-message">Browzable Minutes allow you to view any video on the site. As you watch, minutes will be deducted from your balance. Your minutes last for a full year, so no need to plan ahead, just reload when you need. Every &cent;1 gets you 2 minutes.</p><br>
     <div id="dropin-container">
     </div>
     <%= form_tag charges_path, id: "charge-form" do %>
       <%= hidden_field_tag 'nonce' %>
-      <%= button_tag "Pay $10", type: "button", id: "submit-button", class: "button is-primary" %>
+      <%= button_tag "Pay $10", type: "button", id: "submit-button", class: "button is-primary is-large" %>
     <% end %>
   </div>
 </div>
