@@ -1,8 +1,6 @@
 class User < ApplicationRecord
-  # has_one :customer
   has_many :charges
   has_many :payments
-  has_many :sources
   has_many :videos, dependent: :destroy
   has_many :plays
 

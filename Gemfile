@@ -37,6 +37,7 @@ gem 'algoliasearch-rails'
 gem 'faraday'
 gem 'faker'
 gem 'kaminari'
+gem "braintree", "~> 2.76.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

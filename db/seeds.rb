@@ -22,12 +22,11 @@ end
 
 
 User.all.each do |user|
-  source = Source.create!(user_id: user.id, provider_source_id: Random.new.rand(100000000))
+
   Charge.create!(user_id: user.id,
                   amount: 1000,
                   seconds: 10 * Rails.configuration.rate,
-                  provider_charge_id: Random.new.rand(100000000),
-                  source_id: source.id)
+                  provider_charge_id: Random.new.rand(100000000))
 end
 
 project_id = 'y4yl0wka0g'
