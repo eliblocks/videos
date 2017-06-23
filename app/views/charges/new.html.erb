@@ -6,9 +6,12 @@ Test card number: 4111 1111 1111 1111
   <div class="column is-6-desktop">
     <h3 class="title is-3">Buy Minutes</h3>
     <p class="sales-message">Browzable minutes allow you to view any video on the site. As you watch, minutes will be deducted from your balance. Your minutes last for a full year, so no need to plan ahead, just reload when you need. Every &cent;1 gets you 2 minutes.</p><br>
-    <div id="dropin-container"></div>
-    <%= button_tag "Add payment method", id: "submit-button", class: "button is-primary" %>
-    <%= button_to "Pay $10", charges_path, id: "pay", class: "button is-primary", params: { nonce: "nonce"} %>
+    <div id="dropin-container">
+    </div>
+    <%= form_tag charges_path, id: "charge-form" do %>
+      <%= hidden_field_tag 'nonce' %>
+      <%= button_tag "Pay $10", type: "button", id: "submit-button", class: "button is-primary" %>
+    <% end %>
   </div>
 </div>
 
@@ -21,10 +24,12 @@ Test card number: 4111 1111 1111 1111
     }, function (createErr, instance) {
       button.addEventListener('click', function () {
         instance.requestPaymentMethod(function (err, payload) {
-          console.log(payload);
-          $("#pay").show();
-          $("#submit-button").hide();
-          $("input[name='nonce']").val(payload.nonce);
+          if (err) {
+            console.log(err);
+          } else {
+            $("input[name='nonce']").val(payload.nonce);
+            $("#charge-form").submit();
+          }
         });
       });
     });

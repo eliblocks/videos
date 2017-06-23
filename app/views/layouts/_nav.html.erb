@@ -29,7 +29,7 @@
         <%= button_tag "Actions", id: "dropdown-button", class: "button is-primary" %>
         <ul id="dropdown-content">
           <li>
-            <%= link_to "Account", account_path(@user) %>
+            <%= link_to "Account", account_path %>
           </li>
           <% if current_user.uploader? %>
             <li>

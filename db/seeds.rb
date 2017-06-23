@@ -26,7 +26,7 @@ User.all.each do |user|
   Charge.create!(user_id: user.id,
                   amount: 1000,
                   seconds: 10 * Rails.configuration.rate,
-                  provider_charge_id: Random.new.rand(100000000))
+                  gateway_charge_id: Random.new.rand(100000000))
 end
 
 project_id = 'y4yl0wka0g'

@@ -40,6 +40,10 @@ class User < ApplicationRecord
     update!(balance: balance + (seconds * (1 - Rails.configuration.commission)))
   end
 
+  def credit_purchase!(amount)
+    update!(balance: balance + (amount * Rails.configuration.rate))
+  end
+
   def minutes
     balance/60
   end

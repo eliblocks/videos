@@ -2,14 +2,12 @@ class Charge < ApplicationRecord
   belongs_to :user
 
   def self.create_from_transaction(transaction, user)
-    seconds = Rails.configuration.rate * (transaction.amount / 100)
+    seconds = Rails.configuration.rate * transaction.amount.to_i
 
     create!(
     seconds: seconds,
-    provider_charge_id: transaction.token,
-    amount: transaction.amount,
-    created: transaction.created_at,
-    currency: transaction.currency_code,
+    gateway_charge_id: transaction.id,
+    amount: transaction.amount.to_i,
     user_id: user.id
    )
   end
