@@ -12,7 +12,9 @@
           <%= text_field_tag(:q, "", class: "input") %>
         </p>
         <p class="control">
-          <%= submit_tag("Search", class: "button is-primary") %>
+          <%= button_tag type: "submit", class: "button" do %>
+            <%= fa_icon "search" %>
+          <% end %>
         </p>
       </div>
     <% end %>
