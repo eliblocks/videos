@@ -17,49 +17,60 @@
       </div>
     <% end %>
   </div>
-  <% if logged_in? %>
-    <div class="nav-center">
-      <%= link_to new_video_path, class: "nav-item", "data-turbolinks" => 'false' do %>
-        <span class="button is-primary">Upload</span>
-      <% end %>
-      <%= link_to new_charge_path, class: "nav-item", id: 'buy', 'data-turbolinks' => 'false' do %>
-        <span class="button is-primary">Buy Minutes</span>
-      <% end %>
-      <div class="dropdown nav-item">
-        <%= button_tag "Actions", id: "dropdown-button", class: "button is-primary" %>
-        <ul id="dropdown-content">
-          <li>
-            <%= link_to "Account", account_path %>
-          </li>
-          <% if current_user.uploader? %>
+  <span class="nav-toggle" id="nav-toggle" onclick="toggleMenu();">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+ 
+    <% if logged_in? %>
+      <div class="nav-right nav-menu" id="nav-menu">
+        <%= link_to "Upload", new_video_path, class: "nav-item", "data-turbolinks" => 'false' %>
+
+        <%= link_to "Buy Minutes", new_charge_path, class: "nav-item", id: 'buy', 'data-turbolinks' => 'false' %>
+        <div class="dropdown nav-item">
+          <%= image_tag current_user.image, id: "dropdown-button", class: "image is-circle", onclick: "dropdown();" %>
+          <ul id="dropdown-content">
             <li>
-              <%= link_to "Profile", user_path(current_user) %>
-            </li>            
-          <% end %>
-          <li>
-            <%= link_to "Log out", logout_path %>
-          </li>
-        </ul>
+              <%= link_to "Account", '/account', id: "dropwdown-account" %>
+            </li>
+            <% if current_user.uploader? %>
+              <li>
+                <%= link_to "Profile", '/profile', id: "dropdown-profile" %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to "Log out", '/logout', id: "dropdown-logout" %>
+            </li>
+          </ul>
+        </div>
+        <%= link_to "Profile", '/profile', id: "menu-profile", class: "nav-item", style: "display:none;" %>
+        <%= link_to "Log out", '/logout', id: "menu-logout", class: "nav-item", style: "display:none;" %>
+        <%= link_to current_user.balance/60, account_path, class: "nav-item", id: "balance"%>
       </div>
-    </div>
-    <div class="nav-right">
-      <%= link_to account_path, class: "nav-item", id: "balance" do %>
-        <span><%= current_user.balance/60 %></span>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="nav-right">    
-      <%= link_to login_path, class: "nav-item", id: "sign-in" do %>
-        <span class="button is-primary">Connect With Facebook</span>
-      <% end %>
-      <%= link_to '/test_login', class: "nav-item" do %>
-        <span class="button is-primary">Test Login</span>
-      <% end %>
-    </div>
-  <% end %>
+    <% else %>
+      <div class="nav-right">    
+        <%= link_to login_path, class: "nav-item", id: "sign-in" do %>
+          <span class="button is-primary">Connect With Facebook</span>
+        <% end %>
+        <%= link_to '/test_login', class: "nav-item" do %>
+          <span class="button is-primary">Test Login</span>
+        <% end %>
+      </div>
+    <% end %>
+
 </div>
 <script>
-  $("#dropdown-button").click(function() {
+  function dropdown() {
     $("#dropdown-content").toggle();
-  });
+  }
+
+  function toggleMenu() {
+    $("#nav-toggle").toggleClass('is-active');
+    $(".nav-menu").toggleClass('is-active');
+    $(".dropdown").toggle();
+    $("#menu-profile").toggle();
+    $("#menu-logout").toggle();
+  }
+
 </script>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
   get 'account', to: 'users#account'
+  get 'profile', to: 'users#show'
   get 'search', to: 'videos#search'
   get 'test_login', to: 'sessions#test_login'
 
