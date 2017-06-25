@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :full_name, presence: true, length: { maximum: 50, minimum: 5 }
 
 
+
+
   def process(auth)
     if Rails.env == 'development'
       puts auth
@@ -31,6 +33,11 @@ class User < ApplicationRecord
       self.age_range = auth.extra.raw_info.age_range.min.join
     end
   end
+
+  def self.uploaders
+    joins(:videos).group('users.id').having('count(user_id) > 0')
+  end
+
 
   def subtract_balance!(seconds)
     update!(balance: balance - seconds)

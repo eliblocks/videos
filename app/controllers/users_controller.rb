@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authorize, only: [:account]
 
   def index
-    @user = User.all
+    @users = User.uploaders
   end
 
   def show
