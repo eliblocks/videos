@@ -23,5 +23,14 @@ module ApplicationHelper
     tag.div(id: 'wistia_uploader', style: 'height:360px;width:100%', data: { project: project_id })
   end
 
+  def full_title(page_title = '')
+    base_title = "Browzable"
+    if page_title.empty?
+      base_title
+    else
+      page_title + " | " + base_title
+    end
+  end
+
 
 end
