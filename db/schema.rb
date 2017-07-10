@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619174053) do
+ActiveRecord::Schema.define(version: 20170628175838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(version: 20170619174053) do
     t.index ["video_id"], name: "index_plays_on_video_id"
   end
 
+  create_table "shows", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "facebook_id"
     t.string "full_name"
@@ -96,6 +103,9 @@ ActiveRecord::Schema.define(version: 20170619174053) do
     t.datetime "updated_at", null: false
     t.string "wistia_delivery_id"
     t.boolean "approved", default: false
+    t.datetime "published_at"
+    t.bigint "show_id"
+    t.index ["show_id"], name: "index_videos_on_show_id"
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
@@ -103,5 +113,6 @@ ActiveRecord::Schema.define(version: 20170619174053) do
   add_foreign_key "payments", "users"
   add_foreign_key "plays", "users"
   add_foreign_key "plays", "videos"
+  add_foreign_key "videos", "shows"
   add_foreign_key "videos", "users"
 end

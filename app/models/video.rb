@@ -4,6 +4,7 @@ class Video < ApplicationRecord
   belongs_to :user
   has_many :plays
 
+
   validates :wistia_id, presence: true, uniqueness: true
   validates :wistia_delivery_id, presence: true, uniqueness: true
   validates :title, presence: true, length: { maximum: 25, minimum: 3 }
