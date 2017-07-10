@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628175838) do
+ActiveRecord::Schema.define(version: 20170707004553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 20170628175838) do
 
   create_table "payments", force: :cascade do |t|
     t.integer "amount"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seconds"
-    t.index ["user_id"], name: "index_payments_on_user_id"
+    t.bigint "video_id"
+    t.index ["video_id"], name: "index_payments_on_video_id"
   end
 
   create_table "plays", force: :cascade do |t|
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20170628175838) do
   end
 
   create_table "videos", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "wistia_id"
     t.integer "seconds_viewed", default: 0
     t.string "title"
@@ -103,16 +102,18 @@ ActiveRecord::Schema.define(version: 20170628175838) do
     t.datetime "updated_at", null: false
     t.string "wistia_delivery_id"
     t.boolean "approved", default: false
+    t.integer "balance"
+    t.string "imdb_id"
+    t.decimal "imdb_rating", precision: 2, scale: 1
+    t.integer "num_votes"
     t.datetime "published_at"
     t.bigint "show_id"
     t.index ["show_id"], name: "index_videos_on_show_id"
-    t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
   add_foreign_key "charges", "users"
-  add_foreign_key "payments", "users"
+  add_foreign_key "payments", "videos"
   add_foreign_key "plays", "users"
   add_foreign_key "plays", "videos"
   add_foreign_key "videos", "shows"
-  add_foreign_key "videos", "users"
 end
