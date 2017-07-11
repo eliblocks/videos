@@ -1,3 +1,5 @@
 class Show < ApplicationRecord
-  has_many :videos
+  belongs_to :user
+  has_many :sections
+  has_many :videos, through: :section
 end

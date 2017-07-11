@@ -1,0 +1,18 @@
+<div class="columns is-multiline">
+  <% @shows.each do |show| %>
+    <div class="column is-4">
+      <%= link_to show_path(show) do %>
+        <div class="card">
+          <div class="card-content">
+            <p class="title"><%= show.title %></p>
+            <p class="subtitle">by <%= show.user.full_name %></p>
+            <p><%= show.description %></p>
+          </div>
+          <footer class="card-footer">
+            <span class="card-footer-item"><%= show.sections.count %> sections</span>
+          </footer>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

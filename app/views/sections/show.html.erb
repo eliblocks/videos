@@ -1,0 +1,14 @@
+<p class="title"><%= @section.show.title %> | <%= @section.title || "Section X" %></p>
+<div class="columns is-multiline ">
+  <% @videos.each do |video| %>
+      <div class="column is-10 list-item">
+        <%= link_to video_path(video) do %>
+          <div class="card">
+            <div class="card-content">
+              <p><%= video.title %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  <% end %>   
+</div>

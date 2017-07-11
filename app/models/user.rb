@@ -1,15 +1,14 @@
 class User < ApplicationRecord
+
   has_many :charges
   has_many :payments
   has_many :videos, dependent: :destroy
+  has_many :shows, dependent: :destroy
   has_many :plays
 
   validates :facebook_id, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :full_name, presence: true, length: { maximum: 50, minimum: 5 }
-
-
-
 
   def process(auth)
     if Rails.env == 'development'

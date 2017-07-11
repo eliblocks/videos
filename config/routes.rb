@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  root 'videos#index'
+  root 'shows#index'
 
   get '/about', to: 'static#about'
   get '/eula', to: 'static#eula'
@@ -24,5 +24,7 @@ Rails.application.routes.draw do
   resources :videos
   resources :plays
   resources :payments, only: [:new, :create]
+  resources :shows
+  resources :sections
 
 end
