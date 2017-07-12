@@ -17,8 +17,21 @@
  */
 .list-item {
   padding: 0px;
+  
 }
- 
+
+ul {
+
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 20px;
+    list-style-type: disc;
+  }
+}
 
 .button.is-static {
   background-color: whitesmoke;

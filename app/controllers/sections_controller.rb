@@ -9,6 +9,7 @@ class SectionsController < ApplicationController
   end
 
   def new
+    @section = Section.new
   end
 
   def create
