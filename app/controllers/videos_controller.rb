@@ -22,7 +22,9 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = Video.new
+    @section = Section.find(params[:section_id])
+    @show = @section.show
+    @video = @section.videos.new
 
     if Rails.env == 'development'
       @project = 'ma2vo0l9bd'
@@ -34,15 +36,39 @@ class VideosController < ApplicationController
   end
 
   def create
-    @video = Video.new(video_params)
+    @section = Section.find(params[:video][:section_id])
+    @video = @section.videos.new(video_params)
     @video.user = current_user
     if @video.save
       flash[:success] = "Video successfully submitted"
       flash[:info] = "Video will be public once it has been approved. Since this app is currently in testing phase, you can approve your own video by visiting /admin."
-      redirect_to root_url
+      redirect_to section_path(@section)
     else
       render 'new'
     end
+  end
+
+  def edit
+    @video = Video.find(params[:id])
+    @section = @video.section
+    @show = @video.section.show
+  end
+
+  def update
+    @video = Video.find(params[:id])
+    if @video.update_attributes(video_params)
+      flash[:success] = "Video updated"
+      redirect_to section_path(@video.section)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @video = Video.find(params[:id])
+    @video.destroy
+    flash[:success] = "Video Deleted"
+    redirect_to section_path(@video.section)
   end
 
   def search

@@ -21,10 +21,12 @@ Rails.application.routes.draw do
 
   resources :users
   resources :charges
-  resources :videos
+
   resources :plays
   resources :payments, only: [:new, :create]
-  resources :shows
-  resources :sections
+  resources :shows do
+    resources :sections, shallow: true
+    resources :videos, shallow: true
+  end
 
 end

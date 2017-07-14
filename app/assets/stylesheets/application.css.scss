@@ -15,6 +15,16 @@
  *= require bulma.css
  *= require font-awesome
  */
+
+ .section_info {
+  display: flex;
+  justify-content: space-between;
+ }
+
+ .video-time {
+  float: right;
+ }
+
 .list-item {
   padding: 0px;
   

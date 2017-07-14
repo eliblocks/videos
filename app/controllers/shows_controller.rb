@@ -6,7 +6,7 @@ class ShowsController < ApplicationController
 
   def show
     @show = Show.find(params[:id])
-    @sections = @show.sections
+    @sections = @show.sections.add_positions
   end
 
   def new

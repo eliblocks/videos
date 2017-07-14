@@ -1,23 +1,37 @@
 <p class="title"><%= @show.title %></p>
 <% @sections.each do |section| %>
   <div class="columns">
-    <div class="column list-item">
+    <div class="column list-item is-10-desktop">
       <%= link_to section_path(section) do %>
         <div class="card">
-          <div class="card-content">
-            <p><%= section.title || "Section X" %></p>
+          <div class="card-content section_info">
+            <span>
+              <%= section_header(section) %>
+            </span>
+            <span>
+              
+            </span>
+            <span>
+              <%= youtube_time(section.length_in_seconds) %>
+            </span>
           </div>
         </div>
       <% end %>
     </div>
+    <% if @show.user == current_user %>
+      <div class="column is-2-desktop">
+        <%= link_to "Edit", edit_section_path(section) %> | 
+        <%= link_to "Delete", section, method: :delete, data: { confirm: "Are you sure?" } %>
+      </div>
+  <% end %>
   </div>
+  
 <% end %>
 
 <% if @show.user == current_user %> 
   <div class="columns">
     <div class="column">
-      <%= link_to "Add Module", new_section_path %>
-      <%= link_to "Add Video", new_video_path %>
+      <%= link_to "Add Module", new_show_section_path(@show), class: "button is-primary" %>
     </div>
   </div>
 <% end %>

@@ -10,7 +10,7 @@
 <% end %>
 <div class="columns">
   <div class="column is-6-desktop is-12-mobile">
-    <%= form_for @video do |f| %>
+    <%= form_for [@show, @video] do |f| %>
       <div class="field">
         <div class="control">
           <%= f.text_field :title, class: "input", placeholder: "Title" %>
@@ -27,6 +27,7 @@
       <%= f.hidden_field :length_in_seconds %>
       <%= f.hidden_field :wistia_id %>
       <%= f.hidden_field :wistia_delivery_id %>
+      <%= f.hidden_field :section_id, value: @section.id %>
       <div class="field">
         <div class="control">
           <%= f.submit "Submit", class: "button is-primary", id: "video-submit", disabled: true %>

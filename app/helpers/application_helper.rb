@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def youtube_time(seconds)
     hours = 0
     minutes = 0
@@ -32,5 +33,12 @@ module ApplicationHelper
     end
   end
 
-
+  def section_header(section)
+    position_name = "Section #{section.position}"
+    if section.title && section.title != ""
+      position_name + " - #{section.title}"
+    else
+      position_name
+    end
+  end
 end
