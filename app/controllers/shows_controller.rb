@@ -14,9 +14,9 @@ class ShowsController < ApplicationController
   end
 
   def create
-    @show = current_user.shows.new
+    @show = current_user.shows.new(show_params)
     if @show.save
-      Show.create(show_params)
+      flash[:success] = "Course created"
       redirect_to show_path(@show)
     else
       render 'new'
