@@ -1,5 +1,5 @@
 class Section < ApplicationRecord
-  belongs_to :show
+  belongs_to :show, optional: true
   has_many :videos
 
   attribute :position, :integer

@@ -27,7 +27,9 @@
       <%= f.hidden_field :length_in_seconds %>
       <%= f.hidden_field :wistia_id %>
       <%= f.hidden_field :wistia_delivery_id %>
-      <%= f.hidden_field :section_id, value: @section.id %>
+      <% if params[:section_id] %>
+        <%= f.hidden_field :section_id, value: @section.id %>
+      <% end %>
       <div class="field">
         <div class="control">
           <%= f.submit "Submit", class: "button is-primary", id: "video-submit", disabled: true %>

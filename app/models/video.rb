@@ -2,7 +2,7 @@ class Video < ApplicationRecord
   include AlgoliaSearch
 
   belongs_to :user
-  belongs_to :section
+  belongs_to :section, optional: true
   has_many :plays
 
 
