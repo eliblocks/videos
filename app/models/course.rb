@@ -1,4 +1,4 @@
-class Show < ApplicationRecord
+class Course < ApplicationRecord
   belongs_to :user
   has_many :sections, dependent: :destroy
   has_many :videos, through: :sections

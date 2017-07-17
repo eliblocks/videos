@@ -1,5 +1,5 @@
 <p class="title">
-  <%= link_to(@section.show.title, show_path(@section.show)) %> | 
+  <%= link_to(@section.course.title, course_path(@section.course)) %> | 
   <%= link_to(section_header(@section), "#") %>
 </p>
 <div class="columns is-multiline ">
@@ -14,7 +14,7 @@
           </div>
         <% end %>
       </div>
-      <% if @section.show.user == current_user %>
+      <% if @section.course.user == current_user %>
         <div class="column is-2-desktop">
           <span><%= link_to "Edit", edit_video_path(video) %></span> | 
           <span><%= link_to "Delete", video, method: :delete, data: { confirm: "Are you sure?" } %></span>
@@ -23,6 +23,6 @@
   <% end %>
 
 </div>
-<% if @section.show.user == current_user %>
-  <%= link_to "Add Video", new_show_video_path(@show, section_id: @section.id), class: "button is-primary" %>
+<% if @section.course.user == current_user %>
+  <%= link_to "Add Video", new_course_video_path(@course, section_id: @section.id), class: "button is-primary" %>
 <% end %>

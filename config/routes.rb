@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :plays
   resources :payments, only: [:new, :create]
-  resources :shows do
+  resources :courses do
     resources :sections, shallow: true
     resources :videos, shallow: true
   end

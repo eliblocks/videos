@@ -24,7 +24,7 @@ class VideosController < ApplicationController
   def new
     if params[:section_id]
       @section = Section.find(params[:section_id])
-      @show = @section.show
+      @course = @section.course
       @video = @section.videos.new
     else
       @video = Video.new
@@ -64,7 +64,7 @@ class VideosController < ApplicationController
 
   def edit
     @section = @video.section
-    @show = @video.section.show
+    @course = @video.section.course
   end
 
   def update

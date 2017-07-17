@@ -1,15 +1,15 @@
 class Section < ApplicationRecord
-  belongs_to :show, optional: true
+  belongs_to :course, optional: true
   has_many :videos
 
   attribute :position, :integer
 
   def add_position
     if id  == nil
-      self.position = show.sections.count + 1
+      self.position = course.sections.count + 1
       return self
     else
-      self.position = show.sections.ids.find_index(id) + 1
+      self.position = course.sections.ids.find_index(id) + 1
       return self
     end
   end

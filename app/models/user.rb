@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :charges
   has_many :payments
   has_many :videos, dependent: :destroy
-  has_many :shows, dependent: :destroy
+  has_many :courses, dependent: :destroy
   has_many :plays
 
   validates :facebook_id, presence: true, uniqueness: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710171017) do
+ActiveRecord::Schema.define(version: 20170717175644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20170710171017) do
     t.index ["user_id"], name: "index_charges_on_user_id"
   end
 
+  create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
   create_table "payments", force: :cascade do |t|
     t.integer "amount"
     t.bigint "user_id"
@@ -67,19 +76,10 @@ ActiveRecord::Schema.define(version: 20170710171017) do
 
   create_table "sections", force: :cascade do |t|
     t.string "title"
-    t.bigint "show_id"
+    t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["show_id"], name: "index_sections_on_show_id"
-  end
-
-  create_table "shows", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_shows_on_user_id"
+    t.index ["course_id"], name: "index_sections_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,11 +120,11 @@ ActiveRecord::Schema.define(version: 20170710171017) do
   end
 
   add_foreign_key "charges", "users"
+  add_foreign_key "courses", "users"
   add_foreign_key "payments", "users"
   add_foreign_key "plays", "users"
   add_foreign_key "plays", "videos"
-  add_foreign_key "sections", "shows"
-  add_foreign_key "shows", "users"
+  add_foreign_key "sections", "courses"
   add_foreign_key "videos", "sections"
   add_foreign_key "videos", "users"
 end
