@@ -1,11 +1,11 @@
 class ShowsController < ApplicationController
+  before_action :set_show, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shows = Show.all
+    @shows = Show.all.page(params[:page]).per(5)
   end
 
   def show
-    @show = Show.find(params[:id])
     @sections = @show.sections.add_positions
   end
 
@@ -24,11 +24,10 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    @show = Show.find(params[:id])
+
   end
 
   def update
-    @show = Show.find(params[:id])
     if @show.update_attributes(show_params)
       flash[:success] = "Show updated"
       redirect_to show_path(@show)
@@ -38,12 +37,19 @@ class ShowsController < ApplicationController
   end
 
   def destroy
+    @show.destroy
+    flash[:success] = "Course deleted"
+    redirect_to shows_path
   end
 
   private
 
   def show_params
     params.require(:show).permit(:title, :description)
+  end
+
+  def set_show
+    @show = Show.find(params[:id])
   end
 
 

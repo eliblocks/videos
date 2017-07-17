@@ -3,13 +3,13 @@ Wistia.password = ENV['WISTIA_SECRET_KEY']
 
 class VideosController < ApplicationController
   before_action :authorize, only: [:new, :create]
+  before_action :set_video, only: [:show, :edit, :update, :destroy]
 
   def index
     @videos = Video.approved.order(seconds_viewed: :desc).page(params[:page]).per(5)
   end
 
   def show
-    @video = Video.find(params[:id])
     if !logged_in?
       flash[:danger] = "You need to be logged in to watch videos"
       redirect_to root_url
@@ -63,13 +63,11 @@ class VideosController < ApplicationController
   end
 
   def edit
-    @video = Video.find(params[:id])
     @section = @video.section
     @show = @video.section.show
   end
 
   def update
-    @video = Video.find(params[:id])
     if @video.update_attributes(video_params)
       flash[:success] = "Video updated"
       redirect_to section_path(@video.section)
@@ -79,7 +77,6 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    @video = Video.find(params[:id])
     @video.destroy
     flash[:success] = "Video Deleted"
     redirect_to section_path(@video.section)
@@ -99,5 +96,9 @@ class VideosController < ApplicationController
                                   :length_in_seconds,
                                   :wistia_id,
                                   :wistia_delivery_id)
+  end
+
+  def set_video
+    @video = Video.find(params[:id])
   end
 end

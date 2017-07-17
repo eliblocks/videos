@@ -1,21 +1,21 @@
 class SectionsController < ApplicationController
+  before_action :set_section, only: [:update, :destroy]
+  before_action :set_section_and_position, only: [:show, :edit]
+  before_action :set_show, only: [:new, :create]
 
   def index
   end
 
   def show
-    @section = Section.find(params[:id]).add_position
     @show = @section.show
     @videos = @section.videos
   end
 
   def new
-    @show = Show.find(params[:show_id])
     @section = @show.sections.new.add_position
   end
 
   def create
-    @show = Show.find(params[:show_id])
     @section = @show.sections.new(section_params)
     if @section.save
       flash[:success] = "Section added"
@@ -26,12 +26,10 @@ class SectionsController < ApplicationController
   end
 
   def edit
-    @section = Section.find(params[:id]).add_position
     @show = @section.show
   end
 
   def update
-    @section = Section.find(params[:id])
     if @section.update_attributes(section_params)
       flash[:success] = "Module updated"
       redirect_to show_path(@section.show)
@@ -41,15 +39,30 @@ class SectionsController < ApplicationController
   end
 
   def destroy
-    @section = Section.find(params[:id])
     @section.destroy
     flash[:success] = "Module deleted"
     redirect_to show_path(@section.show)
   end
 
+  private
+
   def section_params
     params.require(:section).permit(:title)
   end
+
+  def set_section
+    @section = Section.find(params[:id])
+  end
+
+  def set_section_and_position
+    @section = Section.find(params[:id]).add_position
+  end
+
+  def set_show
+    @show = Show.find(params[:show_id])
+  end
+
+
 
 
 end

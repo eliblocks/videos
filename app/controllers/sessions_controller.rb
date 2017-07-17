@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     else
       @user = User.new
       @user.process(@auth)
+      @user.balance = 6000
     end
     @user.save
     reset_session

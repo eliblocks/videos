@@ -22,8 +22,11 @@
  
     <% if logged_in? %>
       <div class="nav-right nav-menu" id="nav-menu">
-        <%= link_to "Upload", new_video_path, class: "nav-item", "data-turbolinks" => 'false' %>
-        <%#= link_to "Create Course", new_show_path, class: "nav-item", "data-turbolinks" => 'false' %>
+        <% if controller.controller_name == 'videos' %>
+          <%= link_to "Upload", new_video_path, class: "nav-item", "data-turbolinks" => 'false' %>
+        <% else %>
+          <%= link_to "Create Course", new_show_path, class: "nav-item", "data-turbolinks" => 'false' %>
+        <% end %>
 
         <%= link_to "Buy Minutes", new_charge_path, class: "nav-item", id: 'buy', 'data-turbolinks' => 'false' %>
         <div class="dropdown nav-item">

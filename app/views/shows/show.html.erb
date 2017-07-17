@@ -32,6 +32,11 @@
   <div class="columns">
     <div class="column">
       <%= link_to "Add Module", new_show_section_path(@show), class: "button is-primary" %>
+      <div>
+        <br>
+        <%= link_to "Edit Course", edit_show_path(@show) %> | 
+        <%= link_to "Delete Course", @show, method: :delete %>
+      </div>
     </div>
   </div>
 <% end %>
