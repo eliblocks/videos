@@ -31,7 +31,7 @@ class SectionsController < ApplicationController
 
   def update
     if @section.update_attributes(section_params)
-      flash[:success] = "Module updated"
+      flash[:success] = "Section updated"
       redirect_to course_path(@section.course)
     else
       render 'edit'
@@ -40,7 +40,7 @@ class SectionsController < ApplicationController
 
   def destroy
     @section.destroy
-    flash[:success] = "Module deleted"
+    flash[:success] = "Section deleted"
     redirect_to course_path(@section.course)
   end
 

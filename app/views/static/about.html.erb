@@ -1,3 +1,21 @@
 <% provide(:title, "About") %>
-<h4 class="title is-4">About Browzable</h4>
-<p>Browzable is a new video platform that charges for the time you are watching. You don't
+<div class="columns">
+  <div class="column is-6-desktop">
+    <h4 class="title is-4">About Browzable</h4>
+    <p>
+      Browzable lets you watch videos without ads or subscriptions. Instead, you buy minutes and spend them as you watch. 70% of the money goes to content creators, and anyone can upload videos and start earning.
+    </p><br>
+    <h4 class="title is-4">Eli Block</h4>
+    <figure class="about-picture">
+      <%= image_tag User.find_by(facebook_id: '1041670272').image %>
+    </figure>
+    <br>
+    <p>
+      I'm building Browzable because it's my passion to solve problems of the digital economy. 
+    </p>
+    <%= link_to "LinkedIn", "https://www.linkedin.com/in/eliblock/" %> | 
+    <%= link_to "Facebook", "https://www.facebook.com/eli.block.7" %> | 
+    <%= link_to "Website", "http://eliblock.io" %> 
+  </div>
+</div>
+
