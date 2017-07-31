@@ -6,7 +6,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
   def index
-    @videos = Video.approved.order(seconds_viewed: :desc).page(params[:page]).per(5)
+    @videos = Video.approved.order(seconds_viewed: :desc).page(params[:page]).per(8)
   end
 
   def show
