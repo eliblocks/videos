@@ -1,0 +1,11 @@
+<%= form_for [:admin, @user] do |f| %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :facebook_id %>
+  <%= f.text_field :facebook_id %>
+  <%= f.label :image %>
+  <%= f.text_field :image %>
+  <%= f.submit %>
+<% end %>

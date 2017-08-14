@@ -1,6 +1,33 @@
 Rails.application.routes.draw do
 
-  ActiveAdmin.routes(self)
+
+  namespace :admin do
+    get 'users/index'
+  end
+
+  namespace :admin do
+    get 'videos/index'
+  end
+
+  namespace :admin do
+    get 'videos/new'
+  end
+
+  namespace :admin do
+    get 'videos/edit'
+  end
+
+  namespace :admin do
+    get 'videos/update'
+  end
+
+  namespace :admin do
+    get 'videos/create'
+  end
+
+  namespace :admin do
+    get 'videos/destroy'
+  end
 
   root 'videos#index'
 
@@ -25,6 +52,12 @@ Rails.application.routes.draw do
   post 'videos', to: 'videos#create'
 
   get 'sessions/:id', to: 'sessions#impersonate'
+
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    resources :users, :videos, :courses, :sections
+    get 'sessions/:id', to: 'sessions#impersonate', as: "impersonate"
+  end
 
   resources :users
   resources :charges

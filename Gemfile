@@ -32,7 +32,6 @@ gem 'spreedly'
 
 gem 'wistia-api'
 gem 'font-awesome-rails'
-gem 'activeadmin'
 gem 'algoliasearch-rails'
 gem 'faraday'
 gem 'faker'

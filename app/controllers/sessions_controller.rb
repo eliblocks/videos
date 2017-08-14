@@ -25,14 +25,6 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  def impersonate
-    redirect_to root_url unless current_user.admin?
-    reset_session
-    @user = User.find(params[:id])
-    session[:user_id] = @user.id
-  end
-
-
   def destroy
     reset_session
     redirect_to root_url
