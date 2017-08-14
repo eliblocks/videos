@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'omniauth-facebook'
 # gem 'redis', '~> 3.0'
 gem 'spreedly'
+gem 'jquery-rails'
 
 gem 'wistia-api'
 gem 'font-awesome-rails'

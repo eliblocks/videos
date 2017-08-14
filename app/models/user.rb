@@ -65,9 +65,22 @@ class User < ApplicationRecord
     false
   end
 
-  def last_purchase
-    charges.order(created_at: :desc).first
+  def last_purchase_date
+    if charges.any?
+      charges.order(created_at: :desc).first.created_at
+    else
+      created_at
+    end
   end
+
+  def last_days
+    ((Time.now - last_purchase_date) / 86400).round
+  end
+
+  def minutes_used
+    spent_since_last_purchase / 60
+  end
+
 
   def seconds_purchased
     charges.sum(:seconds) || 0
@@ -82,7 +95,7 @@ class User < ApplicationRecord
   end
 
   def spent_since_last_purchase
-    plays.where(created_at > last_purchase.created_at).sum(:length_in_seconds)
+    plays.where(created_at > last_purchase_date).sum(:length_in_seconds)
   end
 
   def video_play_sums

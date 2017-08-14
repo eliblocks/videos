@@ -29,20 +29,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def last_days
-    ((Time.now - current_user.last_purchase.created_at) / 86400).round
-  end
 
-  def minutes_used
-    current_user.spent_since_last_purchase / 60
-  end
+
 
   def account
     @user = current_user
-    @last_days = last_days
-    @minutes_used = minutes_used
-    @most_watched_videos = @user.most_watched_videos(10)
-    @most_watched_uploaders = @user.most_watched_uploaders(10)
+    @last_days = current_user.last_days
+    @minutes_used = current_user.minutes_used
+    @most_watched_videos = current_user.most_watched_videos(10)
+    @most_watched_uploaders = current_user.most_watched_uploaders(10)
   end
 
   private
