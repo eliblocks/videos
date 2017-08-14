@@ -15,6 +15,20 @@ class UsersController < ApplicationController
 
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Account Updated"
+      redirect_to '/account'
+    else
+      render 'edit'
+    end
+  end
+
   def last_days
     ((Time.now - current_user.last_purchase.created_at) / 86400).round
   end
@@ -32,6 +46,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.require(:user).permit(:paypal_email)
+  end
 
   def all_or_approved_videos(user)
     user == current_user ? user.videos : user.videos.approved

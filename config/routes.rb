@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/paymentaddendum', to: 'static#paymentaddendum'
   get '/privacy', to: 'static#privacy'
   get '/contact', to: 'static#contact'
+  get '/license_agreement', to: 'static#license_agreement'
+  get 'getting_paid', to: 'static#getting_paid'
 
   get 'auth/facebook/callback', to: 'sessions#create'
   get 'login', to: 'sessions#new'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   get 'videos', to: 'videos#index'
   get 'videos/new', to: 'videos#new', as: 'new_video'
   post 'videos', to: 'videos#create'
+
+  get 'sessions/:id', to: 'sessions#impersonate'
 
   resources :users
   resources :charges

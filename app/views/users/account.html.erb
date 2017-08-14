@@ -3,6 +3,9 @@
   <div class="columns">
     <div class="column">
       <h2>Name on Account: <%= @user.full_name %></h2>
+      <% if @user.videos %>
+        <h2>Paypay Email Address: <%= @user.paypal_email || @user.email %>
+      <% end %>
       <h2>Balance: <%= @user.minutes %> minutes</h2>
     </div>
   </div>
@@ -28,7 +31,8 @@
     </div>
   </div>
   <%= link_to "Buy Minutes", new_charge_path %>
-  <% if @user.uploader? %>
-    <%= link_to "Cash out", new_charge_path %>
+  <% if @user.uploader? %> | 
+    <%= link_to "Cash out", new_charge_path %> |
+    <%= link_to "Edit Account", edit_user_path(@user) %>
   <% end %>
 </div>

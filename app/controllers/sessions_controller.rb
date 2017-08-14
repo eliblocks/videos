@@ -21,9 +21,17 @@ class SessionsController < ApplicationController
 
   def test_login
     reset_session
-    session[:user_id] = User.find_by(facebook_id: "1041888888").id
+    session[:user_id] = User.find(50).id
     redirect_to root_url
   end
+
+  def impersonate
+    redirect_to root_url unless current_user.admin?
+    reset_session
+    @user = User.find(params[:id])
+    session[:user_id] = @user.id
+  end
+
 
   def destroy
     reset_session

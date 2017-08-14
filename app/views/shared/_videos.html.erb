@@ -2,9 +2,9 @@
   <% @videos.each do |video| %>
     <div class="column is-3-desktop is-6-tablet">
       <div class="video-image">
-        <figure class="image is-300x169">
+        <figure class="image is-300x300">
           <%= link_to video_path(video), class: "video-image-link" do %>
-            <%= image_tag video.thumbnail_url %>
+            <%= image_tag video.image %>
           <% end %>
         </figure>
         <span class="vid-length"> <%= youtube_time(video.length_in_seconds) %></span>

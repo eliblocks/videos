@@ -10,6 +10,7 @@
 <% end %>
 <div class="columns">
   <div class="column is-6-desktop is-12-mobile">
+  <p>Anyone can upload videos to Browzable and earn money. 70% of revenue from your videos will be paid out to you. Click <%= link_to "here", '/getting_paid' %> for informtion on getting paid.</p><br>
     <%= form_for [@course, @video] do |f| %>
       <div class="field">
         <div class="control">
@@ -30,8 +31,12 @@
       <% if params[:section_id] %>
         <%= f.hidden_field :section_id, value: @section.id %>
       <% end %>
+      <p>By uploading a video to Browzable to agree to our 
+        <%= link_to "License Agreement", '/license_agreement' %>.
+      </p><br>
       <div class="field">
         <div class="control">
+
           <%= f.submit "Submit", class: "button is-primary", id: "video-submit", disabled: true %>
         </div>
       </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717175644) do
+ActiveRecord::Schema.define(version: 20170814175701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,9 @@ ActiveRecord::Schema.define(version: 20170717175644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "balance", default: 0
+    t.string "paypal_email"
+    t.boolean "paypal_confirmed", default: false
+    t.boolean "admin", default: false
   end
 
   create_table "videos", force: :cascade do |t|
@@ -115,6 +118,7 @@ ActiveRecord::Schema.define(version: 20170717175644) do
     t.boolean "approved", default: false
     t.datetime "published_at"
     t.bigint "section_id"
+    t.string "image"
     t.index ["section_id"], name: "index_videos_on_section_id"
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
