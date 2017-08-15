@@ -6,11 +6,29 @@
         <%=image_tag @user.image%>
       </figure>
         <h3 class="title is-3" id="user_name"><%= @user.full_name %></h3>
-        <span><%= @videos.count %> videos</span> | 
+        <span><%= @user.courses.count %> Courses</span> | 
         <span><%= @user.total_minutes_earned %></span> min
     </div>
   </div>
-  <%= render 'shared/videos' %>
+  <div class="columns is-multiline">
+    <% @user.courses.each do |course| %>
+      <div class="column is-4">
+        <%= link_to course_path(course) do %>
+          <div class="card">
+            <div class="card-content">
+              <p class="title"><%= course.title %></p>
+              <p class="subtitle">by <%= course.user.full_name %></p>
+              <p><%= course.description %></p>
+            </div>
+            <footer class="card-footer">
+              <span class="card-footer-item"><%= course.videos.count %> Videos</span>
+              <span class="card-footer-item"><%= course.minutes %> Minutes</span>
+            </footer>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 
