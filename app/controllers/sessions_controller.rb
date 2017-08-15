@@ -19,11 +19,11 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  def test_login
-    reset_session
-    session[:user_id] = User.find(50).id
-    redirect_to root_url
-  end
+  # def test_login
+  #   reset_session
+  #   session[:user_id] = User.find(50).id
+  #   redirect_to root_url
+  # end
 
   def destroy
     reset_session

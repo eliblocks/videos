@@ -48,7 +48,7 @@ class VideosController < ApplicationController
     end
 
     @video.user = current_user
-
+    @video.image = @video.thumbnail_url
     if @video.save
       flash[:success] = "Video successfully submitted"
       flash[:info] = "Video will be public once it has been approved. Since this app is currently in testing phase, you can approve your own video by visiting /admin."
