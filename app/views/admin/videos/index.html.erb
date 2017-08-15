@@ -1,2 +1,32 @@
-<h1>Admin::Videos#index</h1>
-<p>Find me in app/views/admin/videos/index.html.erb</p>
+<div class="columns">
+  <div class="column">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>User</th>
+          <th>Length</th>
+          <th>Approved</th>
+          <th>Approve</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @videos.each do |video| %>
+          <tr>
+            <td><%= video.id %></td>
+            <td><%= video.title %></td>
+            <td><%= video.user.full_name %></td>
+            <td><%= video.length_in_seconds / 60 %></td>
+            <td><%= video.approved %></td>
+            <td>
+              <%= link_to "Toggle Approval", 
+                    toggle_approval_admin_video_path(video.id), 
+                    method: :post %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
