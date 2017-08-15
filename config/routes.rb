@@ -1,35 +1,6 @@
 Rails.application.routes.draw do
 
-
-  namespace :admin do
-    get 'users/index'
-  end
-
-  namespace :admin do
-    get 'videos/index'
-  end
-
-  namespace :admin do
-    get 'videos/new'
-  end
-
-  namespace :admin do
-    get 'videos/edit'
-  end
-
-  namespace :admin do
-    get 'videos/update'
-  end
-
-  namespace :admin do
-    get 'videos/create'
-  end
-
-  namespace :admin do
-    get 'videos/destroy'
-  end
-
-  root 'videos#index'
+  root 'courses#index'
 
   get '/about', to: 'static#about'
   get '/eula', to: 'static#eula'
