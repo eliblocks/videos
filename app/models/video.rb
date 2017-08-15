@@ -9,7 +9,7 @@ class Video < ApplicationRecord
   validates :wistia_id, presence: true, uniqueness: true
   validates :wistia_delivery_id, presence: true, uniqueness: true
   validates :title, presence: true, length: { maximum: 25, minimum: 3 }
-  validates :description, length: { minimum: 20, maximum: 255 }
+  validates :description, length: { maximum: 255 }
 
   scope :approved, -> { where(approved: true) }
 
