@@ -1,2 +1,2 @@
-class Admin::SectionsController < ApplicationController
+class Admin::SectionsController < Admin::AdminController
 end

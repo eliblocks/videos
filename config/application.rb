@@ -13,8 +13,8 @@ module Videos
 
     config.eager_load_paths << "#{Rails.root}/lib"
 
-    # USD/seconds currency conversion 1 USD gets 12000 seconds of viewing time.
-    config.rate = 12000
+    # USD/seconds currency conversion 1 USD gets 6000 seconds of viewing time.
+    config.rate = 6000
     config.commission = 0.30
 
     if Rails.env == 'development' || Rails.env == 'test'
