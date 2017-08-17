@@ -50,13 +50,15 @@ _wapiq.push(function(W) {
   window.wistiaUploader = new W.Uploader({
     accessToken: '7583b7e3465fbaaa70163ab255a0f9581b9817755d4dac04d4b75556c5e61da9',
     dropIn: "wistia_uploader",
-    projectId: document.getElementById("wistia_uploader").dataset.project
+    projectId: document.getElementById("wistia_uploader").dataset.project,
+
+    extraVideoExtensions: 'mkv'
   });
-  console.log(document.getElementById("wistia_uploader").dataset.project);
   wistiaUploader.bind("uploadembeddable", function(file, media, embedCode, oembedResponse) {
     console.log("Here's the media in Wistia: ", media);
     addMediaInfo(media); // save the embed code to your database to display the video in the future
     $("#video-submit").prop("disabled", false);
+
   });
 
 });

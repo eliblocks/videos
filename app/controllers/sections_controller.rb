@@ -1,6 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :set_section, only: [:update, :destroy]
-  before_action :set_section_and_position, only: [:show, :edit]
+  before_action :set_section, only: [:update, :destroy, :show]
   before_action :set_course, only: [:new, :create]
 
   def index
@@ -12,7 +11,7 @@ class SectionsController < ApplicationController
   end
 
   def new
-    @section = @course.sections.new.add_position
+    @section = @course.sections.new
   end
 
   def create
@@ -54,15 +53,9 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
   end
 
-  def set_section_and_position
-    @section = Section.find(params[:id]).add_position
-  end
 
   def set_course
     @course = Course.find(params[:course_id])
   end
-
-
-
 
 end

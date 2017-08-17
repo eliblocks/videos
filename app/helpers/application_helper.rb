@@ -34,11 +34,10 @@ module ApplicationHelper
   end
 
   def section_header(section)
-    position_name = "Section #{section.position}"
-    if section.title && section.title != ""
-      position_name + " - #{section.title}"
+    if section.title
+      "Section #{section.position} - #{section.title}"
     else
-      position_name
+      "Section #{section.position}"
     end
   end
 end

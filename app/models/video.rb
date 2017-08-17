@@ -4,6 +4,7 @@ class Video < ApplicationRecord
   belongs_to :user
   belongs_to :section, optional: true
   has_many :plays
+  acts_as_list scope: :section
 
 
   validates :wistia_id, presence: true, uniqueness: true
@@ -58,4 +59,15 @@ class Video < ApplicationRecord
   def minutes_viewed
     seconds_viewed/60
   end
+
+  def previous
+    ""
+  end
+
+  def next
+    ""
+  end
+
+
+
 end

@@ -16,6 +16,15 @@
  *= require font-awesome
  */
 
+// .wistia-embed {
+//   height: 100%;
+//   width: 100%;
+// }
+
+.video-page {
+  margin-top: -30px;
+}
+
 .about-picture {
   width: 300px;
   height: 300px;
@@ -89,9 +98,6 @@ ul {
   align-items: center;
 }
 
-.video-column {
-  max-width: 640px;
-}
 
 #video-creator-name {
   font-size: 20px;

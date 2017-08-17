@@ -1,16 +1,28 @@
 <% provide(:title, @video.title) %>
 <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script>
 
-<div class="columns">
-  <div class="column video-column">
-    <%= content_tag(:div, "&nbsp;", 
-                    class: "wistia_embed wistia_async_#{@video.wistia_id} autoPlay=true",
-                    id: "wistia_vid",
-                    style: "height:360px;width:640px",
-                    data: { video_id: @video.wistia_id }) %>
-    <div class="video-info">
-      <p class="video-show-title"><%= @video.title %></p>
-      <p class="video-show-minutes"><%= number_to_human(@video.seconds_viewed/60) %> minutes watched</p>
+<div class="columns video-page">
+  <div class="column video-column is-10 is-offset-1">
+    <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+      <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+        <%= content_tag(:div, "&nbsp;", 
+                        class: "wistia_embed wistia_async_#{@video.wistia_id} autoPlay=true",
+                        id: "wistia_vid",
+                        style: "height:100%;width:100%",
+                        data: { video_id: @video.wistia_id }) %>
+      </div>
+    </div>
+    <div class="columns video-info">
+      <div class="column is-4">
+        <%= @video.previous %>
+      </div>
+      <div class="column is-4">
+        <p class="video-show-title"><%= @video.title %></p>
+      </div>
+      <div class="column is-4">
+        <%= @video.previous %>
+      </div>
+
     </div>
     <div class="creator-info">
       <%= link_to user_path(@video.user) do %>

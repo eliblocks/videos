@@ -1,6 +1,10 @@
 <p class="title">
-  <%= link_to(@section.course.title, course_path(@section.course)) %> | 
-  <%= link_to(section_header(@section), "#") %>
+  <% if @section.course.sections.count == 1 %>
+    <%=@section.course.title %>
+  <% else %>
+    <%= link_to(@section.course.title, course_path(@section.course)) %> | 
+    <%= link_to(section_header(@section), "#") %>
+  <% end %>
 </p>
 <div class="columns is-multiline ">
   <% @videos.each do |video| %>
@@ -8,6 +12,7 @@
         <%= link_to video_path(video) do %>
           <div class="card">
             <div class="card-content">
+              <span><%= video.position %>.</span>
               <span><%= video.title %></span>
               <span class="video-time"><%= youtube_time(video.length_in_seconds) %></span>
             </div>
