@@ -12,26 +12,37 @@
                         data: { video_id: @video.wistia_id }) %>
       </div>
     </div>
+    <br>
     <div class="columns video-info">
-      <div class="column is-4">
-        <%= @video.previous %>
+      <div class="column">
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <%= link_to("Prev: #{@video.higher_item.title}", 
+                video_path(@video.higher_item), 
+                class: "link is-5") unless @video.first? %>
+          </div>
+          <div class="level-item has-text-centered">
+            <p class="title is-4"><%= @video.title %></p>
+          </div>
+          <div class="level-item has-text-centered">
+            <%= link_to("Next: #{@video.lower_item.title}", video_path(@video.lower_item)) unless @video.last? %>
+          </div>
+        </nav>
       </div>
-      <div class="column is-4">
-        <p class="video-show-title"><%= @video.title %></p>
-      </div>
-      <div class="column is-4">
-        <%= @video.previous %>
-      </div>
-
     </div>
-    <div class="creator-info">
-      <%= link_to user_path(@video.user) do %>
-        <%=image_tag @video.user.image, size: "100x100" %>
-      <% end %>
-      <%= link_to user_path(@video.user) do %>
-        <%= content_tag :p, @video.user.full_name, id: "video-creator-name" %>
-      <% end %>
-  
+    <div class="columns">
+      <div class="column">
+            <%= link_to user_path(@video.user) do %>
+              <%=image_tag @video.user.image, size: "25x25" %>
+              <%= @video.user.full_name %>
+            <% end %>
+            >
+            <%= link_to @video.section.course.title, course_path(@video.section.course) %>
+            >
+            <%= link_to section_header(@video.section), section_path(@video.section) %>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

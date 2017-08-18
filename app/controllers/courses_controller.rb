@@ -31,6 +31,7 @@ class CoursesController < ApplicationController
   end
 
   def update
+
     if @course.update_attributes(course_params)
       flash[:success] = "course updated"
       redirect_to course_path(@course)
@@ -48,7 +49,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:title, :description)
+    params.require(:course).permit(:title, :description, sections_attributes: [:title, :position, :id])
   end
 
   def set_course

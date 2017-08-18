@@ -1,5 +1,49 @@
 <div class="columns">
   <div class="column is-6-desktop">
-    <%= render 'form' %>
+    <%= form_for @course do |f| %>
+      <%= render 'shared/error_messages', object: @course %>
+      <div class="field">
+        <%= f.label :title, class: "label" %>
+        <div class="control">
+          <%= f.text_field :title, class: "input" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :description, class: "label" %>
+        <div class="control">
+          <%= f.text_area :description, class: "textarea" %>
+        </div>
+      </div>
+      <label class="label">Sections</label>
+
+        <%= f.fields_for :sections, f.object.sections.order(:position) do |section_form| %>
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <%= section_form.number_field :position, class: "input" %>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <%= section_form.text_field :title, class: "input" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      
+      <div class="field">
+        <div class="control">
+          <%= f.submit "Submit", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column">
+    <%= button_to "Delete Course", course_path(@course), class: "button is-danger", method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 </div>

@@ -18,12 +18,6 @@
         </div>
       <% end %>
     </div>
-    <% if @course.user == current_user %>
-      <div class="column is-2-desktop">
-        <%= link_to "Edit", edit_section_path(section) %> | 
-        <%= link_to "Delete", section, method: :delete, data: { confirm: "Are you sure?" } %>
-      </div>
-  <% end %>
   </div>
   
 <% end %>
@@ -34,8 +28,7 @@
       <%= link_to "Add Section", new_course_section_path(@course), class: "button is-primary" %>
       <div>
         <br>
-        <%= link_to "Edit Course", edit_course_path(@course) %> | 
-        <%= link_to "Delete Course", @course, method: :delete %>
+        <%= link_to "Edit Course", edit_course_path(@course) %>
       </div>
     </div>
   </div>

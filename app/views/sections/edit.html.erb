@@ -1,13 +1,34 @@
-<%= form_for @section do |f| %>
-  <div class="field has-addons">
-    <div class="control">
-      <span class="button"><%= "Section  - " %></span>
-    </div>
-    <div class="control">
-      <%= f.text_field :title, class: "input", placeholder: "Optional Section Title"  %>
-    </div>
-  </div>
-  <div class="field">
-    <%= f.submit "Edit", class: "button is-primary" %>
-  </div>
+<h4 class="title is-4">Edit Section</h4>
+
+<% if @section.errors.any? %>
+  <ul>
+    <% @section.errors.full_messages.each do |msg| %>
+      <li class="notification is-danger"><%= msg %></li>
+    <% end %>
+  </ul>
+  <br>
 <% end %>
+
+<div class="columns">
+  <div class="column is-6-desktop">
+    <%= form_for @section do |f| %>
+      <div class="field">
+        <div class="control">
+          <%= f.label :title, class: "label" %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <%= f.text_field :title, class: "input" %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <%= f.submit "Submit", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
+    <br>
+    <%= button_to "Delete Section", section_path(@section), method: :delete, class: "button is-danger", data: { confirm: "Are you sure?"} %>
+  </div>
+</div>

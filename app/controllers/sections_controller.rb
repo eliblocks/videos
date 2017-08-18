@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :set_section, only: [:update, :destroy, :show]
+  before_action :set_section, only: [:update, :destroy, :show, :edit]
   before_action :set_course, only: [:new, :create]
 
   def index
