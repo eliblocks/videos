@@ -22,6 +22,22 @@
           <%= f.text_field :title, class: "input" %>
         </div>
       </div>
+      <%= f.fields_for :videos, f.object.videos.order(:position) do |video_form| %>
+        <div class="field is-horizontal">
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <%= video_form.number_field :position, class: "input" %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <%= video_form.text_field :title, class: "input" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <div class="field">
         <div class="control">
           <%= f.submit "Submit", class: "button is-primary" %>

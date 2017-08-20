@@ -37,5 +37,11 @@
         </div>
       </div>
     <% end %>
+    <div class="columns">
+      <div class="column">
+      <br>
+        <%= button_to "Delete Video", video_path(@video), method: :delete, class: "button is-danger", data: { confirm: "Are you sure?"} %>
+      </div>
+    </div>
   </div>
 </div>

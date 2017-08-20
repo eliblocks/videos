@@ -7,7 +7,7 @@
   <% end %>
 </p>
 <div class="columns is-multiline ">
-  <% @videos.each do |video| %>
+  <% @videos.order(:position).each do |video| %>
       <div class="column is-10-desktop list-item">
         <%= link_to video_path(video) do %>
           <div class="card">
@@ -19,11 +19,6 @@
           </div>
         <% end %>
       </div>
-      <% if @section.course.user == current_user %>
-        <div class="column is-2-desktop">
-          <span><%= link_to "Edit", edit_video_path(video) %></span>
-        </div>
-      <% end %>
   <% end %>
 </div>
 

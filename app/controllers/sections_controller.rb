@@ -31,7 +31,7 @@ class SectionsController < ApplicationController
   def update
     if @section.update_attributes(section_params)
       flash[:success] = "Section updated"
-      redirect_to course_path(@section.course)
+      redirect_to section_path(@section)
     else
       render 'edit'
     end
@@ -46,7 +46,7 @@ class SectionsController < ApplicationController
   private
 
   def section_params
-    params.require(:section).permit(:title)
+    params.require(:section).permit(:title, videos_attributes: [:id, :title, :position])
   end
 
   def set_section

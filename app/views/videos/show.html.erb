@@ -42,10 +42,17 @@
             <%= link_to section_header(@video.section), section_path(@video.section) %>
 
         </div>
-      </div>
     </div>
+    <% if @video.user == current_user %>
+      <div class="columns">
+        <div class="column">
+          <%= link_to "Edit Video", edit_video_path(@video) %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
+
 
 <%= form_with model: Play.new, id: "play" do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
