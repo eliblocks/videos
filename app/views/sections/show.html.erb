@@ -26,7 +26,7 @@
 <% if @section.course.user == current_user %> 
   <div class="columns">
     <div class="column">
-      <%= link_to "Add Section", new_course_video_path(@course, section: @section.id), class: "button is-primary" %>
+      <%= link_to "Add Video", new_course_video_path(@course, section: @section.id), class: "button is-primary" %>
       <div>
         <br>
         <%= link_to "Edit Section", edit_section_path(@section) %>
