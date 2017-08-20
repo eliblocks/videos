@@ -36,24 +36,14 @@ class VideosController < ApplicationController
   end
 
   def create
-    if params[:video][:section_id]
-
-      @section = Section.find(params[:video][:section_id])
-      @video = @section.videos.new(video_params)
-    else
-      @video = Video.new(video_params)
-
-    end
+    @section = Section.find(params[:section_id])
+    @video = @section.videos.new(video_params)
 
     @video.user = current_user
     @video.image = @video.thumbnail_url
     if @video.save
       flash[:success] = "Video successfully submitted for approval"
-      if @video.section
-        redirect_to section_path(@section)
-      else
-        redirect_to root_url
-      end
+      redirect_to section_path(@section)
     else
       render 'new'
     end

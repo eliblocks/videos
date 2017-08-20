@@ -4,7 +4,7 @@
       <div class="video-image">
         <figure class="image is-300x300">
           <%= link_to video_path(video), class: "video-image-link" do %>
-            <%= image_tag video.image %>
+            <%= image_tag video.image || 'blank_video.png' %>
           <% end %>
         </figure>
         <span class="vid-length"> <%= youtube_time(video.length_in_seconds) %></span>
