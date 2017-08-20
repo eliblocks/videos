@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @sections = @course.sections
+    @sections = @course.sections.order(:position)
     if @sections.count == 1
       redirect_to section_path(@sections.first)
     end

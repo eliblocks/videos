@@ -22,13 +22,9 @@ class VideosController < ApplicationController
   end
 
   def new
-    if params[:section_id]
-      @section = Section.find(params[:section_id])
-      @course = @section.course
-      @video = @section.videos.new
-    else
-      @video = Video.new
-    end
+    @section = Section.find(params[:section_id])
+    @course = @section.course
+    @video = @section.videos.new
 
     if Rails.env == 'development'
       @project = 'ma2vo0l9bd'
@@ -41,10 +37,12 @@ class VideosController < ApplicationController
 
   def create
     if params[:video][:section_id]
+
       @section = Section.find(params[:video][:section_id])
       @video = @section.videos.new(video_params)
     else
       @video = Video.new(video_params)
+
     end
 
     @video.user = current_user
