@@ -39,8 +39,8 @@ class Video < ApplicationRecord
     "#{folder}#{wistia_delivery_id}.jpg?image_crop_resized=300x169&image_quality=100&ssl=true"
   end
 
-  def add_seconds_viewed!(seconds)
-    update!(seconds_viewed: seconds_viewed + seconds)
+  def add_seconds_viewed(seconds)
+    update(seconds_viewed: seconds_viewed + seconds)
   end
 
 

@@ -6,7 +6,9 @@ class PlaysController < ApplicationController
     Play.create!(play_params)
     current_user.subtract_balance!(seconds)
     @video.user.add_balance!(seconds)
-    @video.add_seconds_viewed!(seconds)
+    @video.add_seconds_viewed(seconds)
+    @video.section.add_seconds_viewed(seconds)
+    @video.section.course.add_seconds_viewed(seconds)
     head :ok
   end
 

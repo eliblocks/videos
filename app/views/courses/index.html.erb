@@ -3,14 +3,12 @@
     <div class="column is-4">
       <%= link_to course_path(course) do %>
         <div class="card">
-          <div class="card-content">
-            <p class="title"><%= course.title %></p>
-            <p class="subtitle">by <%= course.user.full_name %></p>
-            <p><%= course.description %></p>
-          </div>
+          <p class="card-creator-name"><%= course.user.full_name %></p>
+          <p class="card-course-title"><%= course.title %></p>
+          <p class="card-description"><%= course.description %></p>
           <footer class="card-footer">
             <span class="card-footer-item"><%= youtube_time(course.seconds) %></span>
-            <span class="card-footer-item"><%= course.minutes %> Views</span>
+            <span class="card-footer-item"><%= course.minutes_viewed %> Views</span>
           </footer>
         </div>
       <% end %>

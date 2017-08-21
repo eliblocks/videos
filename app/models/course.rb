@@ -15,6 +15,18 @@ class Course < ApplicationRecord
   def seconds
     videos.sum(:length_in_seconds)
   end
+
+  def minutes_viewed
+    seconds_viewed/60
+  end
+
+  def add_seconds_viewed(seconds)
+    update(seconds_viewed: seconds_viewed + seconds)
+  end
+
+  def seconds_played
+    videos.map { |video| video.plays.sum(:length_in_seconds) }.reduce(:+) || 0
+  end
 end
 
 
