@@ -40,4 +40,12 @@ module ApplicationHelper
       "Section #{section.position}"
     end
   end
+
+  def user_image(user)
+    if user.image == nil || user.image.empty?
+      return 'default.jpg'
+    else
+      return user.image
+    end
+  end
 end

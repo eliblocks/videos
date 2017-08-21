@@ -9,7 +9,11 @@ class Course < ApplicationRecord
 
 
   def minutes
-    videos.sum(:length_in_seconds)/60
+    seconds/60
+  end
+
+  def seconds
+    videos.sum(:length_in_seconds)
   end
 end
 
