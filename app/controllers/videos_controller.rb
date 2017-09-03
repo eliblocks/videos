@@ -18,6 +18,7 @@ class VideosController < ApplicationController
       redirect_to root_url
     else
       @play = Play.new
+      @course = @video.section.course
     end
   end
 

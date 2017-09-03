@@ -32,16 +32,17 @@
     </div>
     <div class="columns">
       <div class="column">
-            <%= link_to user_path(@video.user) do %>
-              <%=image_tag @video.user.image, size: "25x25" %>
-              <%= @video.user.full_name %>
-            <% end %>
-            >
-            <%= link_to @video.section.course.title, course_path(@video.section.course) %>
-            >
-            <%= link_to section_header(@video.section), section_path(@video.section) %>
-
-        </div>
+        <%= link_to user_path(@video.user) do %>
+          <%=image_tag @video.user.image, size: "25x25" %>
+          <%= @video.user.full_name %>
+        <% end %>
+        >
+        <%= link_to @course.title, course_path(@course) %>
+        <% if @course.sections.many? %>
+          >
+          <%= link_to section_header(@video.section), section_path(@video.section) %>
+        <% end %>
+      </div>
     </div>
     <% if @video.user == current_user %>
       <div class="columns">
