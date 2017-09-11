@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#show'
   get 'search', to: 'videos#search'
   get 'test_login', to: 'sessions#test_login'
+  get 'instructor_agreement', to: 'static#instructor_agreement'
   # get 'videos', to: 'videos#index'
   # get 'videos/new', to: 'videos#new', as: 'new_video'
   # post 'videos', to: 'videos#create'
