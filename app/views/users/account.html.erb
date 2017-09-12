@@ -2,11 +2,12 @@
 <div class="account">  
   <div class="columns">
     <div class="column">
-      <h2>Name on Account: <%= @user.full_name %></h2>
+      <h4 class="title is-4"><%= @user.full_name %> Account Information</h4>
+      <h5 class="title is-5">Balance: <%= @user.minutes %> minutes</h5>
       <% if @user.videos %>
         <h2>Paypay Email Address: <%= @user.paypal_email || @user.email %>
       <% end %>
-      <h2>Balance: <%= @user.minutes %> minutes</h2>
+      
     </div>
   </div>
   <div class="columns">
@@ -15,11 +16,24 @@
     </div>
   </div>
   <div class="columns">
-    <div class="column">
-      <p>Most watched videos</p>
-      <% @most_watched_videos.each do |video, seconds| %>
-        <p><%= video.title %>: <%= seconds/60 %> min</p>
-      <% end %>
+    <div class="column is-6-desktop">
+      <p>Course Activity</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Minutes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @most_watched_videos.each do |video, seconds| %>
+            <tr>
+              <td><%= video.title %></td>
+              <td><%= seconds/60 %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="columns">

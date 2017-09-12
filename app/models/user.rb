@@ -98,6 +98,19 @@ class User < ApplicationRecord
     plays.where(created_at > last_purchase_date).sum(:length_in_seconds)
   end
 
+  def course_play_sums
+    course_times = {}
+    plays.includes(:video, :section).each do |play|
+      course_id = play.video.section.course_id
+      if course_times.keys.include?(course_id)
+        course_times[course_id] += play.length_in_seconds
+      else
+        course_times[course_id] = play.length_in_seconds
+      end
+    end
+    course_times
+  end
+
   def video_play_sums
     videos_times = {}
     plays.each do |play|
@@ -143,5 +156,8 @@ class User < ApplicationRecord
   def total_minutes_earned
     videos.pluck(:seconds_viewed).reduce(:+)/60
   end
+
+
+
 
 end
