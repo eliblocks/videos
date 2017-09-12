@@ -26,9 +26,16 @@
 <% if @section.course.user == current_user %> 
   <div class="columns">
     <div class="column">
-      <%= link_to "Add Video", new_section_video_path(@section), class: "button is-primary" %>
       <div>
-        <br>
+        <%= link_to "Add Video", new_section_video_path(@section) %>
+      </div>
+      <% if @section.course.sections.count == 1 %>
+        <div>
+          <%= link_to "Add Section", new_course_section_path(@course) %>
+        </div>
+      <% end %>
+      <div>
+      <br>
         <%= link_to "Edit Section", edit_section_path(@section) %>
         <% if @section.course.sections.count == 1 %>
           <br>
