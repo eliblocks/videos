@@ -4,7 +4,7 @@ class Course < ApplicationRecord
   accepts_nested_attributes_for :sections
   has_many :videos, through: :sections
 
-  validates :title, presence: true, length: { minimum: 3, maximum: 25 }
+  validates :title, presence: true, length: { minimum: 3, maximum: 50 }
   validates :description, length: { maximum: 255 }
 
 
