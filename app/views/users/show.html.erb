@@ -7,9 +7,10 @@
       </figure>
         <h3 class="title is-3" id="user_name"><%= @user.full_name %></h3>
         <span><%= @user.courses.count %> Courses</span> | 
-        <span><%= @user.total_minutes_earned %></span> min
+        <span><%= number_to_human(@user.total_minutes_earned) %></span> views
     </div>
   </div>
+  <br/>
   <div class="columns is-multiline">
     <% @user.courses.each do |course| %>
       <div class="column is-4">
@@ -21,8 +22,8 @@
               <p><%= course.description %></p>
             </div>
             <footer class="card-footer">
-              <span class="card-footer-item"><%= course.videos.count %> Videos</span>
-              <span class="card-footer-item"><%= course.minutes %> Minutes</span>
+              <span class="card-footer-item"><%= youtube_time(course.seconds) %></span>
+              <span class="card-footer-item"><%= number_to_human(course.minutes_viewed) %> views</span>
             </footer>
           </div>
         <% end %>

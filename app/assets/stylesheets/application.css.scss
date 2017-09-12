@@ -21,6 +21,18 @@
 //   width: 100%;
 // }
 
+#dropdown-content {
+  padding: 5px;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+.video-info {
+  border-top: 1px solid #dbdbdb;
+}
+
 .card-description {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -114,7 +126,7 @@ ul {
 // }
 
 .creator-info {
-  border-top: 1px solid #c0c5ce;
+  border-top: 1px solid #dbdbdb;
   margin-top: 20px;
   padding-top: 20px;
   display: flex;
@@ -132,9 +144,9 @@ ul {
   margin-top: 5px;
 }
 
-#user_card {
-  border-bottom: 2px solid gray;
-}
+// #user_card {
+//   border-bottom: 1px solid #dbdbdb;
+// }
 
 #dropdown-content {
   box-shadow: 0 0 8px #777;

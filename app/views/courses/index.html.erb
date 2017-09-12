@@ -8,7 +8,7 @@
           <p class="card-description"><%= course.description %></p>
           <footer class="card-footer">
             <span class="card-footer-item"><%= youtube_time(course.seconds) %></span>
-            <span class="card-footer-item"><%= course.minutes_viewed %> Views</span>
+            <span class="card-footer-item"><%= number_to_human(course.minutes_viewed) %> Views</span>
           </footer>
         </div>
       <% end %>
