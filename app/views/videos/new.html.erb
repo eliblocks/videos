@@ -11,7 +11,6 @@
 <% end %>
 <div class="columns">
   <div class="column is-6-desktop is-12-mobile">
-  <!-- <p>Anyone can upload videos to Browzable and earn money. 70% of revenue from your videos will be paid out to you. Click <%= link_to "here", '/getting_paid' %> for informtion on getting paid.</p><br> -->
     <%= form_for [@section, @video] do |f| %>
       <div class="field">
         <div class="control">
@@ -29,9 +28,6 @@
       <%= f.hidden_field :length_in_seconds %>
       <%= f.hidden_field :wistia_id %>
       <%= f.hidden_field :wistia_delivery_id %>
-     <!--  <p>By uploading a video to Browzable you agree to our 
-        <%= link_to "License Agreement", '/license_agreement' %>.
-      </p><br> -->
       <div class="field">
         <div class="control">
 

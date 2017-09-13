@@ -1,3 +1,14 @@
+<h4 class="title is-4">New Section</h4>
+
+<% if @section.errors.any? %>
+  <ul>
+    <% @section.errors.full_messages.each do |msg| %>
+      <li class="notification is-danger"><%= msg %></li>
+    <% end %>
+  </ul>
+  <br>
+<% end %>
+
 <div class="columns">
   <div class="column is-6-desktop">
     <%= form_for [@course, @section] do |f| %>

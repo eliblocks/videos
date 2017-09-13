@@ -20,12 +20,12 @@ class SectionsController < ApplicationController
       flash[:success] = "Section added"
       redirect_to course_path(@course)
     else
-      render 'edit'
+      render 'new'
     end
   end
 
   def edit
-    @course = @section.course
+    # @course = @section.course
   end
 
   def update
