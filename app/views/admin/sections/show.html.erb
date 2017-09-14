@@ -1,0 +1,66 @@
+<div class="columns">
+  <div class="column">
+    <%= link_to @section.course.user.full_name, admin_user_path(@section.course.user) %> >
+    <%= link_to @section.course.title, admin_course_path(@section.course) %> >
+    <%= link_to @section.title, "#" %>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column is-6-desktop">
+    <% if @video && @video.errors.any? %>
+      <ul>
+        <% @video.errors.full_messages.each do |msg| %>
+          <li class="notification is-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+      <br>
+    <% end %>
+
+    <%= form_with scope: :video, url: admin_section_videos_path(@section) do |f| %>
+      <div class="field">
+        <div class="field">
+        <%= f.label :wistia_id, class: "label" %>
+        <div class="control">
+          <%= f.text_field :wistia_id, class: "input" %>
+        </div>
+      </div>
+        <%= f.label "Title", class: "label" %>
+        <div class="control">
+          <%= f.text_field :title, class: "input" %>
+        </div>
+      </div>
+      
+      <div class="field">
+        <div class="control">
+          <%= f.submit "Submit", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column">
+    <table class="table">
+      <thead>
+        <th>Title</th>
+        <th>Length</th>
+        <th>Wistia ID</th>
+        <th>Delivery ID</th>
+      </thead>
+      <tbody>
+        <% @section.videos.each do |video| %>
+          <tr>
+            <td><%= link_to video.title, video_path(video) %></td>
+            <td><%= video.length_in_seconds %></td>
+            <td><%= video.wistia_id %></td>
+            <td><%= video.wistia_delivery_id %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

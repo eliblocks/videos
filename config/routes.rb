@@ -27,10 +27,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
-    resources :users, :courses, :sections
-    resources :videos do
-      member do
-        post 'toggle_approval'
+    resources :users
+    resources :courses, shallow: true do
+      resources :sections do
+        resources :videos do
+          member do
+            post 'toggle_approval'
+          end
+        end
       end
     end
     get 'sessions/:id', to: 'sessions#impersonate', as: "impersonate"
