@@ -51,7 +51,7 @@
         <th>Delivery ID</th>
       </thead>
       <tbody>
-        <% @section.videos.each do |video| %>
+        <% @section.videos.order(:position).each do |video| %>
           <tr>
             <td><%= video.position %></td>
             <td><%= link_to video.title, video_path(video) %></td>
