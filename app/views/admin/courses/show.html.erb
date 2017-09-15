@@ -10,11 +10,13 @@
     <table class="table">
       <thead>
         <tr>
+          <th>Position</th>
           <th>Title</th>
       </thead>
       <tbody>
         <% @course.sections.each do |section| %>
           <tr>
+            <td><%= section.position %></td>
             <td><%= link_to section.title, admin_section_path(section) %></td>
           </tr>
         <% end %>
