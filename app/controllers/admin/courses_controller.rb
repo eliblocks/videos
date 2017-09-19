@@ -10,7 +10,6 @@ class Admin::CoursesController < Admin::AdminController
 
   def toggle_approval
     @course = Course.find(params[:id])
-    puts @course.approved
     if @course.approved
       @course.update(approved: false)
     else
@@ -18,5 +17,4 @@ class Admin::CoursesController < Admin::AdminController
     end
     redirect_to admin_courses_path
   end
-
 end

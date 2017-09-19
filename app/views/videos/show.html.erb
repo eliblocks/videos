@@ -23,23 +23,21 @@
         </div>
       </div>
     <% end %>
-    <div class="columns">
-      <div class="column">
-        <nav class="level">
-          <div class="level-item has-text-centered">
+    <div class="columns lesson-nav">
+      <div class="column is-4">
             <%= link_to("Prev: #{@video.higher_item.title}", 
-                video_path(@video.higher_item), 
-                class: "link is-5") unless @video.first? %>
-          </div>
-          <div class="level-item has-text-centered">
-            <p class="title is-4"><%= @video.title %></p>
-          </div>
-          <div class="level-item has-text-centered">
-            <%= link_to("Next: #{@video.lower_item.title}", video_path(@video.lower_item)) unless @video.last? %>
-          </div>
-        </nav>
+              video_path(@video.higher_item), 
+              class: "link is-5") unless @video.first? %>
+      </div>
+      <div class="column is-4 current-lesson">
+        <span class="title is-4"><%= @video.title %></span>
+      </div>
+      <div class="column is-4 next-lesson">
+        <%= link_to("Next: #{@video.lower_item.title}", video_path(@video.lower_item)) unless @video.last? %>
       </div>
     </div>
+
+
     <div class="columns video-info">
       <div class="column">
         <%= link_to user_path(@video.user) do %>

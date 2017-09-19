@@ -1,5 +1,12 @@
 <%= form_for @course do |f| %>
   <%= render 'shared/error_messages', object: @course %>
+  <h4 class="title is-4">Submit your course!</h4>
+  <p>
+    We are currently looking for web development courses. Creators get 70% of revenue for every minute a user streams course videos. Simply fill out this form 
+    and include a share link to the course files. Course videos 
+    should be organized into section folders. For any questions please contact eli.block@browzable.com
+  </p>
+  <br/>
   <div class="field">
     <%= f.label :title, class: "label" %>
     <div class="control">
@@ -10,6 +17,12 @@
     <%= f.label :description, class: "label" %>
     <div class="control">
       <%= f.text_area :description, class: "textarea" %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :storage_link, "Dropbox or Google Drive Link", class: "label" %>
+    <div class="control">
+      <%= f.text_field :storage_link, class: "input" %>
     </div>
   </div>
   <p>By submitting a course you agree to our <%= link_to 'Instructor Agreement', '/instructor_agreement' %></p>

@@ -218,3 +218,13 @@ h6 {
 .card-footer {
     margin-top: auto;
 }
+
+.next-lesson {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.current-lesson {
+  display: flex;
+  justify-content: center;
+}
