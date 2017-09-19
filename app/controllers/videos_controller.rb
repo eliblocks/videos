@@ -3,7 +3,7 @@ Wistia.password = ENV['WISTIA_SECRET_KEY']
 
 class VideosController < ApplicationController
   before_action :authorize, only: [:new, :create]
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_video, only: [:show, :edit, :update, :destroy, :download]
 
   def index
     @videos = Video.approved.order(seconds_viewed: :desc).page(params[:page]).per(8)
@@ -76,6 +76,11 @@ class VideosController < ApplicationController
     render 'index'
   end
 
+  def download
+    redirect_to @video.download.expiring_url(10)
+  end
+
+
   private
 
   def video_params
@@ -83,7 +88,8 @@ class VideosController < ApplicationController
                                   :description,
                                   :length_in_seconds,
                                   :wistia_id,
-                                  :wistia_delivery_id)
+                                  :wistia_delivery_id,
+                                  :download)
   end
 
   def set_video

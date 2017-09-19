@@ -6,6 +6,9 @@ class Video < ApplicationRecord
   has_many :plays
   acts_as_list scope: :section
 
+  has_attached_file :download
+  validates_attachment_content_type :download, content_type: "application/zip"
+
 
   validates :wistia_id, presence: true, uniqueness: true
   validates :wistia_delivery_id, presence: true, uniqueness: true

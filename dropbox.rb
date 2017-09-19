@@ -1,26 +1,31 @@
 require 'dropbox_api'
-require_relative 'wistia.rb'
+require_relative './wistia.rb'
 
 client = DropboxApi::Client.new(ENV['DROPBOX_AUTH_TOKEN'])
+course_name = "Learn Modern Javascript"
+course_path = "/#{course_name.downcase}"
 
-courses = client.list_folder('').entries
 course_files = []
 
-courses.each do |course|
-  sections = client.list_folder(course.path_lower).entries
-  sections.each do |section|
-    if section.class == DropboxApi::Metadata::Folder
-      files = client.list_folder(section.path_lower).entries
-      files.each do |file|
-        course_files << file.path_lower
-      end
+sections = client.list_folder(course_path).entries
+sections.each do |section|
+  if section.class == DropboxApi::Metadata::Folder
+    files = client.list_folder(section.path_lower).entries
+    files.each do |file|
+      course_files << file.path_lower
     end
   end
 end
 
-existing_links = client.list_shared_links.links
+
+existing_links = client.list_shared_links.links.select { |link| link.path_lower[/\A\/#{course_name.downcase}\//] }
+
+
 
 existing_link_paths = existing_links.map { |link| link.path_lower }
+
+puts "existing links:"
+puts existing_link_paths
 
 new_links = []
 

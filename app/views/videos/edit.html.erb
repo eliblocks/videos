@@ -27,6 +27,12 @@
                     style: "height:360px;",
                     data: { video_id: @video.wistia_id }) %>
       </div>
+      <div class="field">
+        <%= f.label :download, "Attachment (Optional)" %>
+        <div class="control">
+          <%= f.file_field :download, class: "file-input" %>
+        </div>
+      </div>
       <%= f.hidden_field :length_in_seconds %>
       <%= f.hidden_field :wistia_id %>
       <%= f.hidden_field :wistia_delivery_id %>

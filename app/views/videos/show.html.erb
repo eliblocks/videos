@@ -13,6 +13,16 @@
       </div>
     </div>
     <br>
+    <% if @video.download.file? %>
+      <div class="columns">
+        <div class="column">
+          <span class="icon">
+            <%= fa_icon "download" %>
+          </span>
+          <%= link_to @video.download_file_name, download_video_path(@video) %>
+        </div>
+      </div>
+    <% end %>
     <div class="columns">
       <div class="column">
         <nav class="level">

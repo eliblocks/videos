@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   get 'sessions/:id', to: 'sessions#impersonate'
 
+
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :users
@@ -48,7 +49,11 @@ Rails.application.routes.draw do
   resources :payments, only: [:new, :create]
   resources :courses, shallow: true do
     resources :sections do
-      resources :videos
+      resources :videos do
+        member do
+          get 'download'
+        end
+      end
     end
   end
 

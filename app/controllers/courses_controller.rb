@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses = Course.all.order(seconds_viewed: :desc).page(params[:page]).per(5)
+    @courses = Course.all.order(seconds_viewed: :desc).page(params[:page]).per(20)
   end
 
   def show
