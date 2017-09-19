@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses = Course.all.order(seconds_viewed: :desc).page(params[:page]).per(20)
+    @courses = Course.approved.order(seconds_viewed: :desc).includes(:user).page(params[:page]).per(20)
   end
 
   def show
@@ -31,7 +31,6 @@ class CoursesController < ApplicationController
   end
 
   def update
-
     if @course.update_attributes(course_params)
       flash[:success] = "course updated"
       redirect_to course_path(@course)
@@ -45,6 +44,8 @@ class CoursesController < ApplicationController
     flash[:success] = "Course deleted"
     redirect_to courses_path
   end
+
+
 
   private
 

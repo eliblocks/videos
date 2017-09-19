@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918215244) do
+ActiveRecord::Schema.define(version: 20170919183115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170918215244) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "seconds_viewed", default: 0
+    t.boolean "approved", default: false
+    t.string "storage_link"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 

@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     get '', to: 'dashboard#index', as: '/'
     resources :users
     resources :courses, shallow: true do
+      member do
+        post 'toggle_approval'
+      end
       resources :sections do
         resources :videos do
           member do
