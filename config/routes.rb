@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root 'courses#index'
 
   get '/about', to: 'static#about'
@@ -11,9 +12,9 @@ Rails.application.routes.draw do
   get '/license_agreement', to: 'static#license_agreement'
   get 'getting_paid', to: 'static#getting_paid'
 
-  get 'auth/facebook/callback', to: 'sessions#create'
-  get 'login', to: 'sessions#new'
-  get 'logout', to: 'sessions#destroy'
+  # get 'auth/facebook/callback', to: 'sessions#create'
+  # get 'login', to: 'sessions#new'
+  # get 'logout', to: 'sessions#destroy'
   get 'account', to: 'users#account'
   get 'profile', to: 'users#show'
   get 'search', to: 'videos#search'

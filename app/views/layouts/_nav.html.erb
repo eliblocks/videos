@@ -6,13 +6,7 @@
     <%= link_to root_url, class: "nav-item", id: "logo-text" do %>
       <span>Browzable</span>
     <% end %>
-    <% if logged_in? %>
-      <%= render 'layouts/search' %>
-    <% else %>
-      <%= link_to login_path, class: "nav-item", id: "sign-in" do %>
-          <span class="button is-primary">Connect With Facebook</span>
-      <% end %>
-    <% end %>
+    <%= render 'layouts/search' %>
   </div>
   <span class="nav-toggle" id="nav-toggle" onclick="toggleMenu();">
     <span></span>
@@ -20,7 +14,7 @@
     <span></span>
   </span>
  
-    <% if logged_in? %>
+    <% if user_signed_in? %>
       <div class="nav-right nav-menu" id="nav-menu">
         <%= link_to "Create Course", new_course_path, class: "nav-item", "data-turbolinks" => 'false' %>
         <%= link_to "Buy Minutes", new_charge_path, class: "nav-item", id: 'buy', 'data-turbolinks' => 'false' %>
@@ -36,20 +30,18 @@
               </li>
             <% end %>
             <li>
-              <%= link_to "Log out", '/logout', id: "dropdown-logout" %>
+              <%= link_to "Log out", destroy_user_session_path, id: "dropdown-logout", 
+                method: :delete %>
             </li>
           </ul>
         </div>
         <%= link_to "Profile", '/profile', id: "menu-profile", class: "nav-item", style: "display:none;" %>
-        <%= link_to "Log out", '/logout', id: "menu-logout", class: "nav-item", style: "display:none;" %>
         <%= link_to current_user.balance/60, account_path, class: "nav-item", id: "balance"%>
       </div>
-    <% else %>
-      <div class="nav-right nav-menu" id="nav-menu"> 
-        <%= render 'layouts/search' %>
-      </div>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: "nav-item" %>
+        <%= link_to "Sign in", new_user_session_path, class: "nav-item" %>
     <% end %>
-
 </div>
 <script>
   function dropdown() {

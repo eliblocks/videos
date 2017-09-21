@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize, only: [:account]
+  before_action :authenticate_user!, only: [:account]
 
   def index
     @users = User.uploaders
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       @user = current_user
     end
     @videos = all_or_approved_videos(@user)
-
   end
 
   def edit
@@ -43,7 +42,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:paypal_email)
+    params.require(:user).permit(:paypal_email, :full_name)
   end
 
   def all_or_approved_videos(user)

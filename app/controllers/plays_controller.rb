@@ -1,6 +1,7 @@
 class PlaysController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize
+  before_action :authenticate_user!
+
   def create
     @video = Video.find(params[:play][:video_id])
     Play.create!(play_params)

@@ -1,0 +1,42 @@
+<div class="columns">
+  <div class="column is-6-desktop">
+
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: "button facebook-button" %>
+    <hr>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form") do |f| %>
+      <div class="field">
+        <%= f.label :email, class: "label" %>
+        <div class="control">
+          <%= f.email_field :email, autofocus: true, class: "input" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, class: "label" %>
+        <%= f.password_field :password, autocomplete: "off", class: "input" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+          <div class="control">
+            <%= f.label :remember_me, class: "checkbox" do %>
+              <%= f.check_box :remember_me, class: "checkbox" %>
+              Remember me
+            <% end %>
+          </div>
+        </div>
+      <% end -%>
+
+      <div class="field">
+        <div class="control">
+          <%= f.submit "Log in", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
+    <br/>
+    <p>Need to <%= link_to "Sign Up?", new_user_registration_path %></p>
+    
+  </div>
+</div>
+

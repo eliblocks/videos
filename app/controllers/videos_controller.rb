@@ -2,7 +2,7 @@ require 'wistia'
 Wistia.password = ENV['WISTIA_SECRET_KEY']
 
 class VideosController < ApplicationController
-  before_action :authorize, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_video, only: [:show, :edit, :update, :destroy, :download]
 
   def index
@@ -10,7 +10,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    if !logged_in?
+    if !user_signed_in?
       flash[:danger] = "You need to be logged in to watch videos"
       redirect_to root_url
     elsif current_user.balance < @video.length_in_seconds

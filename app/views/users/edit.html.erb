@@ -1,12 +1,22 @@
 <div class="columns">
   <div class="column is-6-desktop">
-    <h4 class="title is-4">Edit Paypal Email Address</h4>
+    <h4 class="title is-4">Edit Profile</h4>
     <%= form_for @user do |f| %>
+
+      <!-- bug? value if no name?-->
       <div class="field">
+        <%= f.label :full_name, class: "label" %>
         <div class="control">
-          <%= f.text_field :paypal_email, class: "input", value: @user.paypal_email || @user.emailr %>
+          <%= f.text_field :full_name, class: "input", value: @user.full_name %>
         </div>
       </div>
+      <div class="field">
+        <%= f.label :paypal_email, class: "label" %>
+        <div class="control">
+          <%= f.text_field :paypal_email, class: "input", value: @user.paypal_email || @user.email %>
+        </div>
+      </div>
+
       <div class="field">
         <div class="control">
           <%= f.submit "Submit", class: "button is-primary" %>

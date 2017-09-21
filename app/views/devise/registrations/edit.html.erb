@@ -1,0 +1,62 @@
+<div class="columns">
+  <div class="column is-6-desktop">
+
+    <h4 class="title is-4">Edit Account Credentials</h2>
+    <% if current_user.uid %>
+      <div class="notification is-danger">
+        <p>You signed up with Facebook and therefore cannot edit your account here.</p>
+      </div>
+      <br>
+    <% end %>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email, class: "label" %>
+        <div class="control">
+          <%= f.email_field :email, autofocus: true, class: "input" %>
+        </div>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :password, class: "label" %> 
+        
+        
+        <div class="control">
+          <%= f.password_field :password, autocomplete: "off", class: "input" %>
+        </div>
+        <span>(leave blank if you don't want to change it)</span>
+        <% if @minimum_password_length %>
+          <span><%= @minimum_password_length %> characters minimum</span>
+        <% end %>
+        
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, class: "label" %>
+        <div class="control">
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password, class: "label" %> 
+        <div class="control">
+          <%= f.password_field :current_password, autocomplete: "off", class: "input" %>
+        </div>
+        <span>(we need your current password to confirm your changes)</span>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <%= f.submit "Update", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
