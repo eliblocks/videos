@@ -14,7 +14,9 @@ class Course < ApplicationRecord
   end
 
   def seconds
-    videos.sum(:length_in_seconds)
+    secs = videos.pluck(:length_in_seconds).reduce(:+)
+    secs = 0 if secs.nil?
+    secs
   end
 
   def minutes_viewed

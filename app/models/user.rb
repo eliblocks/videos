@@ -15,13 +15,13 @@ class User < ApplicationRecord
 
 
   def self.from_omniauth(auth)
-  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    user.email = auth.info.email
-    user.password = Devise.friendly_token[0,20]
-    user.full_name = auth.info.name   # assuming the user model has a name
-    user.image = auth.info.image
-    user.skip_confirmation!
-  end
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.full_name = auth.info.name   # assuming the user model has a name
+      user.image = auth.info.image
+      user.skip_confirmation!
+    end
 end
 
 #copied from docs. not sure what this does.
@@ -32,29 +32,6 @@ def self.new_with_session(params, session)
       end
     end
   end
-
-# def process(auth)
-#   if Rails.env == 'development'
-#     puts auth
-#   end
-#   if auth.extra.raw_info.nil?
-#     process_guest(auth)
-#   else
-#     self.email ||= auth.info.email
-#     self.full_name = auth.info.name
-#     self.image = auth.info.image
-#     self.verified = auth.info.verified
-#     self.facebook_id ||= auth.extra.raw_info.id
-#     self.first_name = auth.extra.raw_info.first_name
-#     self.last_name = auth.extra.raw_info.last_name
-#     self.link = auth.extra.raw_info.link
-#     self.gender = auth.extra.raw_info.gender
-#     self.timezone = auth.extra.raw_info.timezone
-#     self.updated_time = auth.extra.raw_info.updated_time
-#     self.locale = auth.extra.raw_info.locale
-#     self.age_range = auth.extra.raw_info.age_range.min.join
-#   end
-# end
 
   def self.uploaders
     joins(:videos).group('users.id').having('count(user_id) > 0')
