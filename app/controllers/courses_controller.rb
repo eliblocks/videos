@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses = Course.approved.includes(:user).includes(:videos).order(seconds_viewed: :desc).page(params[:page]).per(20)
+    @courses = Course.approved.includes(:user).includes(:videos).order(:rank).page(params[:page]).per(20)
   end
 
   def show
