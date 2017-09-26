@@ -24,15 +24,15 @@
       </div>
     <% end %>
     <div class="columns lesson-nav">
-      <div class="column is-4">
+      <div class="column is-4 lesson">
             <%= link_to("Prev: #{@video.higher_item.title}", 
               video_path(@video.higher_item), 
               class: "link is-5") unless @video.first? %>
       </div>
-      <div class="column is-4 current-lesson">
+      <div class="column is-4 lesson current-lesson">
         <span class="title is-4"><%= @video.title %></span>
       </div>
-      <div class="column is-4 next-lesson">
+      <div class="column is-4 lesson next-lesson">
         <%= link_to("Next: #{@video.lower_item.title}", video_path(@video.lower_item)) unless @video.last? %>
       </div>
     </div>

@@ -227,7 +227,16 @@ h6 {
 .current-lesson {
   display: flex;
   justify-content: center;
+  padding-right: 0px;
+  padding-left: 0px;
 }
+
+.lesson-nav {
+  display: flex; 
+  align-items: center;
+}
+
+
 
 
 // Login Button
