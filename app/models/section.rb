@@ -25,4 +25,8 @@ class Section < ApplicationRecord
   def seconds_played
     videos.map { |video| video.plays.sum(:length_in_seconds) }.reduce(:+) || 0
   end
+
+  def only_child?
+    course.sections.count == 1
+  end
 end

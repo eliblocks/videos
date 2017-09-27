@@ -1,5 +1,5 @@
 <p class="title">
-  <% if @section.course.sections.count == 1 %>
+  <% if @section.only_child? %>
     <%= @section.course.title %>
   <% else %>
     <%= link_to(@section.course.title, course_path(@section.course)) %> | 
@@ -45,3 +45,11 @@
     </div>
   </div>
 <% end %>
+
+<% if @section.only_child? && @section.course.long_description %>
+  <%= render 'courses/course_description' %>
+<% end %>
+
+  
+
+

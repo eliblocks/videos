@@ -34,11 +34,7 @@
   </div>
 <% end %>
 
-<div class="columns">
-  <div class="column is-10-desktop overview">
-    <h4 class="title is-4">Description</h4>
-    <%= sanitize @course.long_description %>
-
-  </div>
-</div>
+<% if @course.long_description %>
+  <%= render 'course_description' %>
+<% end %>
 

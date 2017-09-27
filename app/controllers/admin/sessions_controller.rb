@@ -5,7 +5,7 @@ class Admin::SessionsController < Admin::AdminController
   def impersonate
     reset_session
     @user = User.find(params[:id])
-    session[:user_id] = @user.id
+    sign_in @user
     redirect_to root_url
   end
 
