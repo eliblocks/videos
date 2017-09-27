@@ -43,6 +43,7 @@ gem 'kaminari'
 gem "braintree", "~> 2.76.0"
 gem 'acts_as_list'
 gem 'devise'
+gem "bulma-rails", "~> 0.5.3"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

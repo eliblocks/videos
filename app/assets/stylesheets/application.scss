@@ -12,9 +12,12 @@
  *
  *= require_tree .
  *= require_self
- *= require bulma.css
  *= require font-awesome
  */
+
+ @import "bulma";
+
+
 
 // .wistia-embed {
 //   height: 100%;
@@ -236,7 +239,14 @@ h6 {
   align-items: center;
 }
 
+.hidden {
+  display: none;
+}
 
+.overview li {
+  list-style-type: disc;
+  margin-left: 1rem;
+}
 
 
 // Login Button

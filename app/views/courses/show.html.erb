@@ -1,4 +1,7 @@
-<p class="title"><%= @course.title %></p>
+<span class="title is-4"><%= @course.title %></span>&nbsp; &nbsp;
+<br>
+<br>
+<br>
 <% @sections.each do |section| %>
   <div class="columns">
     <div class="column list-item is-10-desktop">
@@ -30,3 +33,12 @@
     </div>
   </div>
 <% end %>
+
+<div class="columns">
+  <div class="column is-10-desktop overview">
+    <h4 class="title is-4">Description</h4>
+    <%= sanitize @course.long_description %>
+
+  </div>
+</div>
+

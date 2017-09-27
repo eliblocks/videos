@@ -68,6 +68,8 @@ GEM
     braintree (2.76.0)
       builder (>= 2.0.0)
     builder (3.2.3)
+    bulma-rails (0.5.3)
+      sass (~> 3.2)
     byebug (9.1.0)
     capybara (2.15.1)
       addressable
@@ -299,6 +301,7 @@ DEPENDENCIES
   algoliasearch-rails
   aws-sdk (~> 2.3.0)
   braintree (~> 2.76.0)
+  bulma-rails (~> 0.5.3)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
