@@ -33,7 +33,7 @@
 }
 
 .video-info {
-  border-top: 1px solid #dbdbdb;
+  display: flex;
 }
 
 .card-description {
@@ -248,6 +248,24 @@ h6 {
   margin-left: 1rem;
 }
 
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.instructor-link {
+  display: flex;
+  align-items: center;
+}
+
+.rounded-profile {
+  border-radius: 50%;
+}
+
+#course-title {
+  margin-bottom: 0px;
+}
 
 // Login Button
 

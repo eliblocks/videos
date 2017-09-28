@@ -1,4 +1,4 @@
-<p class="title">
+<p class="title is-4">
   <% if @section.only_child? %>
     <%= @section.course.title %>
   <% else %>
@@ -6,6 +6,7 @@
     <%= link_to(section_header(@section), "#") %>
   <% end %>
 </p>
+<br>
 <div class="columns is-multiline ">
   <% @videos.order(:position).each do |video| %>
       <div class="column is-10-desktop list-item">
