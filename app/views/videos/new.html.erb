@@ -19,7 +19,7 @@
       </div>
       <div class="field">
         <div class="control">
-          <%= f.text_area :description, class: "textarea", placeholder: "Short Video Description", rows: 20 %>
+          <%= f.text_area :description, class: "textarea", placeholder: "Short Video Description" %>
         </div>
       </div>
       <div class="field">
@@ -28,7 +28,7 @@
       <div class="field">
         <%= f.label :download, "Attachment (Optional)" %>
         <div class="control">
-          <%= f.file_field :download, class: "file-input" %>
+          <%= f.file_field :download%>
         </div>
       </div>
       <%= f.hidden_field :length_in_seconds %>

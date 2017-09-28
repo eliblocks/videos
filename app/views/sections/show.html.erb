@@ -12,7 +12,8 @@
         <%= link_to video_path(video) do %>
           <div class="card">
             <div class="card-content">
-              <span><%= video.position %></span>&nbsp; &nbsp;
+              <span><%= fa_icon "play" %></span>&nbsp; &nbsp;
+              <span><%= video.position %>.</span>&nbsp;
               <span><%= video.title %></span>
               <span class="video-time"><%= youtube_time(video.length_in_seconds) %></span>
             </div>
