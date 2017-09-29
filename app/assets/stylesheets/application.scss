@@ -276,8 +276,22 @@ h6 {
 .facebook-button {
   color: #fff;
   background-color: #3b5998;
+  &:focus {
+    color: #fff;
+  }
+  &:hover{
+    text-decoration: none;
+    color: #fff;
+  }
+  &.hero {
+    
+  }
 }
-.facebook-button:hover {
-  text-decoration: none;
-  color: #fff;
+
+
+
+.facebook-button-hero {
+  border: none;
 }
+
+

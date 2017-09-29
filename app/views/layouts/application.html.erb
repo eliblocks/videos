@@ -12,14 +12,18 @@
 
   <body>
     <%= render 'layouts/nav' %>
-    <div class="section">
-      <div class="container">
-        <% flash.each do |message_type, message| %>
-          <%= content_tag(:div, message, class: "notification is-#{message_type}") %>
-        <% end %>
-        <%= yield %>
+      <% if !user_signed_in? && current_page?(controller: '/courses', action: 'index') %>
+        <%= render 'layouts/banner' %>
+      <% end %>
+      <div class="section">
+        <div class="container">
+          <% flash.each do |message_type, message| %>
+            <%= content_tag(:div, message, class: "notification is-#{message_type}") %>
+          <% end %>
+          <%= yield %>
+        </div>
       </div>
-    </div>
+
     <%= render 'layouts/footer' %>
   </body>
 </html>
