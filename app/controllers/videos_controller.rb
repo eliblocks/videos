@@ -72,8 +72,12 @@ class VideosController < ApplicationController
 
   def search
     @query = params[:q]
-    @videos = Video.algolia_search(@query)
-    render 'index'
+    if params[:q].blank?
+      redirect_back(fallback_location: root_url)
+    else
+      @videos = Video.algolia_search(@query)
+      render 'index'
+    end
   end
 
   def download

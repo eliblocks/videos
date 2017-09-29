@@ -4,9 +4,11 @@
         <div class="card">
           <div class="card-content">
             <span><%= fa_icon "play" %></span>&nbsp; &nbsp;
-            <span><%= video.position %>.</span>&nbsp;
-            <span><%= video.title %></span>&nbsp; &nbsp; &nbsp; <i>in</i> &nbsp; &nbsp; &nbsp;
-            <span><%= video.section.course.title %></span>
+            <span><%= video.title %></span>
+            <% if video.section %>
+              &nbsp; &nbsp; &nbsp; <i>in</i> &nbsp; &nbsp; &nbsp;
+              <span><%= video.section.course.title %></span>
+            <% end %>
             <span class="video-time"><%= youtube_time(video.length_in_seconds) %></span>
           </div>
         </div>
