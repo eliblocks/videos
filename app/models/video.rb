@@ -18,9 +18,8 @@ class Video < ApplicationRecord
   scope :approved, -> { where(approved: true) }
 
 
-  algoliasearch if: :approved?, per_environment: true do
+  algoliasearch per_environment: true do
     attribute :title,
-              :description,
               :user_id,
               :seconds_viewed,
               :length_in_seconds,

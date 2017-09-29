@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column is-10-desktop">
     <div class="course-header">
-      <span class="title is-4" id="course-title"><%= @course.title %></span>
+      <span class="title is-4 course-title"><%= @course.title %></span>
        <%= link_to user_path(@course.user), class: "instructor-link" do %>
           <%=image_tag @course.user.image, size: "20x20", class: "rounded-profile" %>&nbsp;
           <%= @course.user.full_name %>

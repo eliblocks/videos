@@ -14,6 +14,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
 
+
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -77,10 +79,9 @@ def self.new_with_session(params, session)
     ((Time.now - last_purchase_date) / 86400).round
   end
 
-  def minutes_used
-    spent_since_last_purchase / 60
+  def minutes_used_last_30
+    plays.where('created_at > ?', 30.days.ago).sum(:length_in_seconds) / 60
   end
-
 
   def seconds_purchased
     charges.sum(:seconds) || 0
@@ -94,33 +95,32 @@ def self.new_with_session(params, session)
     payments.sum(:seconds) || 0
   end
 
-  def spent_since_last_purchase
-    plays.where(created_at > last_purchase_date).sum(:length_in_seconds)
+  def course_plays_last(n)
+    plays.joins(video: :section)
+    .where('plays.created_at > ?', n.days.ago)
+    .group(:course_id)
+    .sum(:length_in_seconds)
   end
 
-  def course_play_sums
-    course_times = {}
-    plays.includes(:video, :section).each do |play|
-      course_id = play.video.section.course_id
-      if course_times.keys.include?(course_id)
-        course_times[course_id] += play.length_in_seconds
-      else
-        course_times[course_id] = play.length_in_seconds
-      end
-    end
-    course_times
+  def uploader_plays_last(n)
+    plays.joins(:video)
+      .where('plays.created_at > ?', n.days.ago)
+      .group('videos.user_id')
+      .sum(:length_in_seconds)
+  end
+
+  def most_watched_courses(n)
+    top_courses = course_plays_last(30).sort_by{ |k, v| v }.reverse!.first(n).to_h
+    top_courses.transform_keys { |k| Course.find(k) }
+  end
+
+  def most_watched_uploaders(n)
+    top_uploaders = uploader_plays_last(30).sort_by { |k, v| v }.reverse!.first(n).to_h
+    top_uploaders.transform_keys { |k| User.find(k) }
   end
 
   def video_play_sums
-    videos_times = {}
-    plays.each do |play|
-      if videos_times.keys.include?(play.video_id)
-        videos_times[play.video_id] += play.length_in_seconds
-      else
-        videos_times[play.video_id] = play.length_in_seconds
-      end
-    end
-    videos_times
+    plays.group(:video_id).sum(:length_in_seconds)
   end
 
   def most_watched_videos(n)
@@ -132,32 +132,8 @@ def self.new_with_session(params, session)
     top_watches.transform_keys { |k| Video.find(k) }
   end
 
-  def uploader_play_sums
-    uploader_times = {}
-    plays.includes(:video).each do |play|
-      if uploader_times.keys.include?(play.video.user_id)
-        uploader_times[play.video.user_id] += play.length_in_seconds
-      else
-        uploader_times[play.video.user_id] = play.length_in_seconds
-      end
-    end
-    uploader_times
-  end
-
-  def most_watched_uploaders(n)
-    if n > uploader_play_sums.length
-      n = uploader_play_sums.length
-    end
-    minimum_time = uploader_play_sums.values.sort.reverse[n-1]
-    top_watches = uploader_play_sums.select { |k, v| v >= minimum_time }
-    top_watches.transform_keys { |k| User.find(k) }
-  end
-
   def total_minutes_earned
     videos.pluck(:seconds_viewed).reduce(:+)/60
   end
-
-
-
 
 end

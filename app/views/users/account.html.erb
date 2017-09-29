@@ -11,7 +11,7 @@
   </div>
   <div class="columns">
     <div class="column">
-      <p><%= "Used #{@minutes_used} minutes in the last #{@last_days} days" %></p>
+      <p><%= "Used #{@minutes_used_last_30} minutes in the last 30 days" %></p>
     </div>
   </div>
   <div class="columns">
@@ -25,9 +25,9 @@
           </tr>
         </thead>
         <tbody>
-          <% @most_watched_videos.each do |video, seconds| %>
+          <% @most_watched_courses.each do |course, seconds| %>
             <tr>
-              <td><%= video.title %></td>
+              <td><%= course.title %></td>
               <td><%= seconds/60 %></td>
             </tr>
           <% end %>

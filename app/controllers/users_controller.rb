@@ -29,13 +29,10 @@ class UsersController < ApplicationController
   end
 
 
-
-
   def account
     @user = current_user
-    @last_days = current_user.last_days
-    @minutes_used = current_user.minutes_used
-    @most_watched_videos = current_user.most_watched_videos(10)
+    @minutes_used_last_30 = current_user.minutes_used_last_30
+    @most_watched_courses = current_user.most_watched_courses(10)
     @most_watched_uploaders = current_user.most_watched_uploaders(10)
   end
 

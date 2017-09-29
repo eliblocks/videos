@@ -1,12 +1,12 @@
 <%= form_tag("/search", method: "get", class: "nav-item") do %>
-        <div class="field has-addons">
-          <p class="control">
-            <%= text_field_tag(:q, "", class: "input") %>
-          </p>
-          <p class="control">
-            <%= button_tag type: "submit", class: "button" do %>
-              <%= fa_icon "search" %>
-            <% end %>
-          </p>
-        </div>
+  <div class="field has-addons">
+    <p class="control">
+      <%= text_field_tag(:q, "", class: "input") %>
+    </p>
+    <p class="control">
+      <%= button_tag type: "submit", class: "button" do %>
+        <%= fa_icon "search" %>
       <% end %>
+    </p>
+  </div>
+<% end %>
