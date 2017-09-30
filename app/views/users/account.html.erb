@@ -3,20 +3,23 @@
   <div class="columns">
     <div class="column">
       <h4 class="title is-4"><%= @user.full_name %> Account Information</h4>
-      <h5 class="title is-5">Balance: <%= @user.minutes %> minutes</h5>
-      <% if @user.videos %>
-        <h2>Paypay Email Address: <%= @user.paypal_email || @user.email %>
-      <% end %>
+      <ul>
+        <li>Balance: <%= @user.minutes %> minutes</li>
+        <% if @user.videos %>
+          <li>Paypay Email Address: <%= @user.paypal_email || @user.email %></li>
+        <% end %>
+        <li><%= "Used #{@minutes_used_last_30} minutes in the last 30 days" %></li>
+      </ul>
     </div>
   </div>
   <div class="columns">
     <div class="column">
-      <p><%= "Used #{@minutes_used_last_30} minutes in the last 30 days" %></p>
+     
     </div>
   </div>
   <div class="columns">
-    <div class="column is-6-desktop">
-      <p>Course Activity</p>
+    <div class="column is-4-desktop">
+      <h5 class="title is-5">Most Watched Courses</h5>
       <table class="table">
         <thead>
           <tr>
@@ -28,24 +31,35 @@
           <% @most_watched_courses.each do |course, seconds| %>
             <tr>
               <td><%= course.title %></td>
-              <td><%= seconds/60 %></td>
+              <td class="minutes"><%= seconds/60 %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="column is-4-desktop">
+      <h5 class="title is-5">Most Watched Instructors</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Instructor</th>
+            <th>Minutes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @most_watched_uploaders.each do |user, seconds| %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td class="minutes"><%= seconds/60 %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="columns">
-    <div class="column">
-      <p>Most watched creators</p>
-        <% @most_watched_uploaders.each do |user, seconds| %>
-          <p><%= user.full_name %>: <%= seconds/60 %> min</p>
-        <% end %>
-    </div>
-  </div>
   <%= link_to "Buy Minutes", new_charge_path %>
   <% if @user.uploader? %> | 
     <%= link_to "Cash out", new_charge_path %>
   <% end %>
-    | <%= link_to "Edit Profile", edit_user_path(@user) %>
+    | <%= link_to "Edit Account", edit_user_path(@user) %>
 </div>

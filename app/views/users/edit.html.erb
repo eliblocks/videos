@@ -23,6 +23,10 @@
         </div>
       </div>
     <% end %>
+    <br>
+    <% unless current_user.uid %>
+      <%= link_to "Edit email or password", edit_user_registration_path %>
+    <% end %>
   </div>
 </div>
 

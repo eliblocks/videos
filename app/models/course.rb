@@ -6,7 +6,7 @@ class Course < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 3, maximum: 50 }
   validates :description, length: { maximum: 255 }
-  validates :long_description, length: { minimum: 256, maximum: 2000}
+  validates :long_description, length: { maximum: 2000 }
 
   scope :approved, -> { where(approved: true) }
 
