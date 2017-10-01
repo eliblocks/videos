@@ -32,10 +32,6 @@ class Video < ApplicationRecord
     hitsPerPage 30
   end
 
-
-
-
-
   def thumbnail_url
     folder = "https://embed-ssl.wistia.com/deliveries/"
     "#{folder}#{wistia_delivery_id}.jpg?image_crop_resized=300x169&image_quality=100&ssl=true"

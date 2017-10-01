@@ -43,7 +43,7 @@ Rails.application.routes.draw do
       end
     end
     get 'sessions/:id', to: 'sessions#impersonate', as: "impersonate"
-
+    get 'videos', to: 'videos#index'
   end
 
   resources :users
