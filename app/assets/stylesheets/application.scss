@@ -257,6 +257,9 @@ h6 {
 .instructor-link {
   display: flex;
   align-items: center;
+  white-space:nowrap;
+
+
 }
 
 .rounded-profile {
@@ -271,6 +274,10 @@ h6 {
   margin-bottom :0px;
 }
 
+.instructor-link-container {
+  display: flex;
+  align-items: center;
+}
 // Login Button
 
 .facebook-button {
@@ -292,6 +299,9 @@ td.minutes {
   text-align: right;
 }
 
+.light-link {
+  color: $text-light;
+}
 
 
 .facebook-button-hero {

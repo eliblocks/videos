@@ -5,8 +5,8 @@
         <% if @section.only_child? %>
           <%= @section.course.title %>
         <% else %>
-          <%= link_to(@section.course.title, course_path(@section.course)) %> | 
-          <%= link_to(section_header(@section), "#") %>
+          <%= link_to(@section.course.title, course_path(@section.course), class: "light-link") %> | 
+          <%= section_header(@section) %>
         <% end %>
       </p>
       <%= link_to user_path(@course.user), class: "instructor-link" do %>

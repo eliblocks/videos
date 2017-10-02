@@ -40,18 +40,27 @@
     <hr>
     <div class="columns">
       <div class="column">
-        <div class="video-info">
-          <%= link_to user_path(@video.user), class: "instructor-link" do %>
-            <%=image_tag @video.user.image, size: "20x20", class: "rounded-profile" %>&nbsp;
-            <%= @video.user.full_name %>
-          <% end %>
-          &nbsp;>&nbsp;
-          <%= link_to @course.title, course_path(@course) %>
-          <% if @course.sections.many? %>
-            &nbsp;>&nbsp; 
-            <%= link_to section_header(@video.section), section_path(@video.section) %>
-          <% end %>
-        </div>
+        <nav class="video-info breadcrumb has-succeeds-separator">
+          <ul>
+            <li>
+              <%= link_to user_path(@video.user), class: "instructor-link" do %>
+                <%=image_tag @video.user.image, size: "20x20", class: "rounded-profile" %>&nbsp;
+                <%= @video.user.full_name %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to @course.title, course_path(@course) %>
+            </li>
+            <% if @course.sections.many? %>
+              <li>
+                <%= link_to section_header(@video.section), section_path(@video.section) %>
+              </li>
+            <% end %>
+            <li class="is-active">
+              <%= link_to @video.title, "#" %>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
     <% if @video.user == current_user %>
