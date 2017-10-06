@@ -24,7 +24,7 @@
             <li>
               <%= link_to "Account", '/account', id: "dropwdown-account" %>
             </li>
-            <% if current_user.uploader? %>
+            <% if current_user.instructor? %>
               <li>
                 <%= link_to "Profile", '/profile', id: "dropdown-profile" %>
               </li>

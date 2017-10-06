@@ -67,6 +67,13 @@ def self.new_with_session(params, session)
     false
   end
 
+  def instructor?
+    if courses.count > 0
+      return true
+    end
+    false
+  end
+
   def last_purchase_date
     if charges.any?
       charges.order(created_at: :desc).first.created_at

@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
-    @videos = all_or_approved_videos(@user)
   end
 
   def edit
