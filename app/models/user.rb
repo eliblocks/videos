@@ -140,7 +140,12 @@ def self.new_with_session(params, session)
   end
 
   def total_minutes_earned
-    videos.pluck(:seconds_viewed).reduce(:+)/60
+    seconds_earned = videos.pluck(:seconds_viewed).reduce(:+)
+    if seconds_earned
+      return seconds_earned/60
+    else
+      return 0
+    end
   end
 
 end
