@@ -24,6 +24,12 @@
 //   width: 100%;
 // }
 
+@media screen and (max-width: 500px) {
+  #search {
+    display:none;
+  }
+}
+
 #dropdown-content {
   padding: 5px;
 }

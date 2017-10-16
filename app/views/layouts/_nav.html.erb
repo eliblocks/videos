@@ -14,34 +14,35 @@
     <span></span>
   </span>
  
-    <% if user_signed_in? %>
+    
       <div class="nav-right nav-menu" id="nav-menu">
-        <%= link_to "Submit a Course", new_course_path, class: "nav-item", "data-turbolinks" => 'false' %>
-        <%= link_to "Buy Minutes", new_charge_path, class: "nav-item", id: 'buy', 'data-turbolinks' => 'false' %>
-        <div class="dropdown nav-item">
-          <%= image_tag user_image(current_user) || 'default.jpg', id: "dropdown-button", class: "image is-circle", onclick: "dropdown();" %>
-          <ul id="dropdown-content">
-            <li>
-              <%= link_to "Account", '/account', id: "dropwdown-account" %>
-            </li>
-            <% if current_user.instructor? %>
+        <% if user_signed_in? %>
+          <%= link_to "Submit a Course", new_course_path, class: "nav-item", "data-turbolinks" => 'false' %>
+          <%= link_to "Buy Minutes", new_charge_path, class: "nav-item", id: 'buy', 'data-turbolinks' => 'false' %>
+          <div class="dropdown nav-item">
+            <%= image_tag user_image(current_user) || 'default.jpg', id: "dropdown-button", class: "image is-circle", onclick: "dropdown();" %>
+            <ul id="dropdown-content">
               <li>
-                <%= link_to "Profile", '/profile', id: "dropdown-profile" %>
+                <%= link_to "Account", '/account', id: "dropwdown-account" %>
               </li>
-            <% end %>
-            <li>
-              <%= link_to "Log out", destroy_user_session_path, id: "dropdown-logout", 
-                method: :delete %>
-            </li>
-          </ul>
-        </div>
-        <%= link_to "Profile", '/profile', id: "menu-profile", class: "nav-item", style: "display:none;" %>
-        <%= link_to current_user.balance/60, account_path, class: "nav-item", id: "balance"%>
+              <% if current_user.instructor? %>
+                <li>
+                  <%= link_to "Profile", '/profile', id: "dropdown-profile" %>
+                </li>
+              <% end %>
+              <li>
+                <%= link_to "Log out", destroy_user_session_path, id: "dropdown-logout", 
+                  method: :delete %>
+              </li>
+            </ul>
+          </div>
+          <%= link_to "Profile", '/profile', id: "menu-profile", class: "nav-item", style: "display:none;" %>
+          <%= link_to current_user.balance/60, account_path, class: "nav-item", id: "balance"%>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-item" %>
+          <%= link_to "Sign in", new_user_session_path, class: "nav-item" %>
+        <% end %>
       </div>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, class: "nav-item" %>
-        <%= link_to "Sign in", new_user_session_path, class: "nav-item" %>
-    <% end %>
 </div>
 <script>
   function dropdown() {
